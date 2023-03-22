@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.lang.*;  //allows checking signs on integers
 /**
  * This is the main player that the user will control.
  * 
@@ -12,28 +12,24 @@ public class Player extends Actor
      */
     public void act()
     {
-        if(Greenfoot.isKeyDown("right"))
-        {
-            setRotation(0);
-            move(2);
+        int dx = 0, dy = 0;
+        String dir = "none";
+        if (Greenfoot.isKeyDown("up")) {
+            dy = -2;
         }
-        
-        if(Greenfoot.isKeyDown("down"))
-        {
-            setRotation(90);
-            move(2);
+        if (Greenfoot.isKeyDown("left")) {
+            dx = -2;
         }
-        
-        if(Greenfoot.isKeyDown("left"))
-        {
-            setRotation(180);
-            move(2);
+        if (Greenfoot.isKeyDown("down")) {
+            dy = 2;
         }
-                
-        if(Greenfoot.isKeyDown("up"))
+        if (Greenfoot.isKeyDown("right")) {
+            dx = 2;
+        }
+        setLocation(getX()+dx, getY()+dy);
+        if (isTouching(Wall.class))
         {
-            setRotation(270);
-            move(2);
+            setLocation(getX()-dx, getY()-dy);
         }
     }
     
