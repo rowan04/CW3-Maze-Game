@@ -6,6 +6,13 @@ import java.lang.*;  //allows checking signs on integers
  */
 public class Player extends Actor
 {
+    public Player()   //constructor to resize player to be a better fit for the maze
+    {
+        GreenfootImage person = getImage();
+        int newHeight = (int)person.getHeight()/2;
+        int newWidth = (int)person.getWidth()/2;
+        person.scale(newWidth, newHeight);
+    }
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -27,7 +34,15 @@ public class Player extends Actor
             dx = 2;
         }
         setLocation(getX()+dx, getY()+dy);
-        if (isTouching(Wall.class))
+        if (isTouching(Wall1.class))
+        {
+            setLocation(getX()-dx, getY()-dy);
+        }
+        if (isTouching(Wall2.class))
+        {
+            setLocation(getX()-dx, getY()-dy);
+        }
+        if (isTouching(Wall3.class))
         {
             setLocation(getX()-dx, getY()-dy);
         }

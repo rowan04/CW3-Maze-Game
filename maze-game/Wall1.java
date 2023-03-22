@@ -6,14 +6,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Wall extends Actor
+public class Wall1 extends Actor
 {
-    public Wall()   //constructor to resize wall to be a better fit for the maze
+    public Wall1()   //constructor to resize wall to be a better fit for the maze
     {
         GreenfootImage brick = getImage();
-        int newHeight = (int)brick.getHeight()/2;
-        int newWidth = (int)brick.getWidth()/2;
-        brick.scale(newWidth, newHeight);
+        brick.scale(50, 50);
     }
     /**
      * Act - do whatever the Wall wants to do. This method is called whenever
