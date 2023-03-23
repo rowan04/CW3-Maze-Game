@@ -52,16 +52,36 @@ public class Player extends Actor
         }
         if (isTouching(End.class))
         {
-            World world = getWorld();
-            java.util.List<Actor> actors = world.getObjects(null);
-            actors.removeAll(world.getObjects(Player.class));
-            world.removeObjects(actors);
-            String score = " 200 points";
-            String time = " 425 seconds";
-            world.showText("YOU WIN!!!", 575, 350);
-            world.showText("score:" + score, 575, 400);
-            world.showText("time:" + time, 575, 450);
+            endGame();
         }
+        if (isTouching(Quit.class))
+        {
+            System.exit(0);
+        }
+        if (isTouching(Again.class))
+        {
+            Greenfoot.setWorld(new MyWorld());
+        }
+    }
+    private void endGame()//removes all actors except the player then displays information and gives player coice to play again or not
+    {
+        World world = getWorld();
+        java.util.List<Actor> actors = world.getObjects(null);
+        actors.removeAll(world.getObjects(Player.class));
+        world.removeObjects(actors);
+        String score = " 200 points";
+        String time = " 425 seconds";
+        world.showText("YOU WIN!!!", 575, 350);
+        world.showText("score:" + score, 575, 400);
+        world.showText("time:" + time, 575, 450);
+        
+        world.showText("Play again", 875, 675);
+        Again again = new Again();
+        world.addObject(again,875,725);
+        
+        world.showText("Quit game", 1075, 475);
+        Quit quit = new Quit();
+        world.addObject(quit,1075,525);
     }
     /**
      * defines how the player moves
