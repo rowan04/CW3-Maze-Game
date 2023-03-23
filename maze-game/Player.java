@@ -6,6 +6,7 @@ import java.lang.*;  //allows checking signs on integers
  */
 public class Player extends Actor
 {
+    public static boolean wallbreaker = false;
     public Player()   //constructor to resize player to be a better fit for the maze
     {
         GreenfootImage person = getImage();
@@ -21,6 +22,14 @@ public class Player extends Actor
     {
         int dx = 0, dy = 0;
         String dir = "none";
+        if(Greenfoot.getKey() == "1")
+        {
+            if(this.wallbreaker == true)
+            {
+                //activate wallbreaker on wall
+                this.wallbreaker = false;
+            }
+        }
         if (Greenfoot.isKeyDown("up")) {
             dy = -2;
         }
@@ -65,6 +74,7 @@ public class Player extends Actor
     }
     private void endGame()//removes all actors except the player then displays information and gives player coice to play again or not
     {
+        Greenfoot.playSound("victory.mp3");
         World world = getWorld();
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
