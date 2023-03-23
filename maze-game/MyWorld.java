@@ -13,8 +13,8 @@ public class MyWorld extends World
      */
     public MyWorld()
     {    
-        // Create a new world with 1150x800 cells with a cell size of 1x1 pixels.
-        super(1150, 800, 1);
+        // Create a new world with 1150x950 cells with a cell size of 1x1 pixels.
+        super(1150, 950, 1);
         setPaintOrder(Player.class);
         addPlayer();
         prepareMaze();
@@ -303,6 +303,30 @@ public class MyWorld extends World
         
         Wall1 wall72 = new Wall1();
         addObject(wall72,775,575);
+        
+        Wall3 wall73 = new Wall3();
+        addObject(wall73,75,825);
+        
+        Wall3 wall74 = new Wall3();
+        addObject(wall74,225,825);
+        
+        Wall3 wall75 = new Wall3();
+        addObject(wall75,375,825);
+        
+        Wall3 wall76 = new Wall3();
+        addObject(wall76,525,825);
+        
+        Wall3 wall77 = new Wall3();
+        addObject(wall77,675,825);
+        
+        Wall3 wall78 = new Wall3();
+        addObject(wall78,825,825);
+        
+        Wall3 wall79 = new Wall3();
+        addObject(wall79,975,825);
+        
+        Wall2 wall80 = new Wall2();
+        addObject(wall80,1100,825);
     }
     private void create_start()
     {
