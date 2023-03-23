@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class MyWorld here.
  * 
@@ -20,7 +19,7 @@ public class MyWorld extends World
         addPlayer();
         prepareMaze();
     }
-
+    
     /**
      * adds the player
      */
