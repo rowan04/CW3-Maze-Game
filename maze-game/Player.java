@@ -50,8 +50,19 @@ public class Player extends Actor
         {
             setLocation(getX()-dx, getY()-dy);
         }
+        if (isTouching(End.class))
+        {
+            World world = getWorld();
+            java.util.List<Actor> actors = world.getObjects(null);
+            actors.removeAll(world.getObjects(Player.class));
+            world.removeObjects(actors);
+            String score = " 200 points";
+            String time = " 425 seconds";
+            world.showText("YOU WIN!!!", 575, 350);
+            world.showText("score:" + score, 575, 400);
+            world.showText("time:" + time, 575, 450);
+        }
     }
-    
     /**
      * defines how the player moves
      */
