@@ -46,6 +46,10 @@ public class Player extends Actor
         {
             setLocation(getX()-dx, getY()-dy);
         }
+        if (isTouching(Breakable.class))
+        {
+            setLocation(getX()-dx, getY()-dy);
+        }
     }
     
     /**
