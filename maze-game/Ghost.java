@@ -25,7 +25,10 @@ public class Ghost extends Actor
     public static int lower_y;
     public static int upper_y;
     
-    public Ghost()   //constructor to resize player to be a better fit for the maze
+    /**
+     * constructor to resize player to be a better fit for the maze
+     */
+    public Ghost()
     {
         GreenfootImage ghost = getImage();
         int newHeight = (int)ghost.getHeight()/5;
@@ -33,11 +36,17 @@ public class Ghost extends Actor
         ghost.scale(newWidth, newHeight);
     }
 
+    /**
+     * what the ghost will do when program is ran
+     */
     public void act()
     {
         move();
     }
     
+    /**
+     * how the ghost moves
+     */
     public void move()
     {
         move(2);

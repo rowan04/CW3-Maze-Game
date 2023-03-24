@@ -7,13 +7,18 @@ import java.lang.*;  //allows checking signs on integers
 public class Player extends Actor
 {
     public static boolean wallbreaker = false;
-    public Player()   //constructor to resize player to be a better fit for the maze
+    
+    /**
+     * constructor to resize player to be a better fit for the maze
+     */
+    public Player()
     {
         GreenfootImage person = getImage();
         int newHeight = (int)person.getHeight()/2;
         int newWidth = (int)person.getWidth()/2;
         person.scale(newWidth, newHeight);
     }
+    
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -73,10 +78,14 @@ public class Player extends Actor
         }
         if (isTouching(Ghost.class))
         {
-            endGame();
+            died();
         }
     }
-    private void endGame()//removes all actors except the player then displays information and gives player coice to play again or not
+    
+    /**
+     * player won - removes all actors except the player then displays information and gives player choice to play again or not
+     */
+    private void endGame()
     {
         Greenfoot.playSound("victory.mp3");
         World world = getWorld();
@@ -86,8 +95,8 @@ public class Player extends Actor
         String score = " 200 points";
         String time = " 425 seconds";
         world.showText("YOU WIN!!!", 575, 350);
-        world.showText("score:" + score, 575, 400);
-        world.showText("time:" + time, 575, 450);
+        world.showText("Score:" + score, 575, 400);
+        world.showText("Time:" + time, 575, 450);
         
         world.showText("Play again", 875, 675);
         Again again = new Again();
@@ -97,6 +106,33 @@ public class Player extends Actor
         Quit quit = new Quit();
         world.addObject(quit,1075,525);
     }
+    
+    /**
+     * player died - removes all actors except the player then displays information and gives player choice to play again or not
+     */
+    private void died()
+    {
+        // add losing sound below
+        // Greenfoot.playSound("");
+        World world = getWorld();
+        java.util.List<Actor> actors = world.getObjects(null);
+        actors.removeAll(world.getObjects(Player.class));
+        world.removeObjects(actors);
+        String score = " 200 points";
+        String time = " 425 seconds";
+        world.showText("YOU DIED", 575, 350);
+        world.showText("Score:" + score, 575, 400);
+        world.showText("Time:" + time, 575, 450);
+        
+        world.showText("Play again", 875, 675);
+        Again again = new Again();
+        world.addObject(again,875,725);
+        
+        world.showText("Quit game", 1075, 475);
+        Quit quit = new Quit();
+        world.addObject(quit,1075,525);
+    }
+    
     /**
      * defines how the player moves
      */

@@ -31,6 +31,9 @@ public class MyWorld extends World
         addObject(new Player(), x, y);
     }
     
+    /**
+     * adds the first ghost
+     */
     private void addGhost1()
     {
         // where the ghost will spawn
@@ -43,6 +46,7 @@ public class MyWorld extends World
         Ghost.lower_y = 75;
         Ghost.upper_y = 275;
         
+        // creating the ghost
         Ghost Ghost1 = new Ghost();
         addObject(Ghost1, x, y);
     }
@@ -62,6 +66,10 @@ public class MyWorld extends World
         create_walls();
         
     }
+    
+    /**
+     * create the walls
+     */
     private void create_walls()
     {
         //discance from 2 midpoint = 50
@@ -345,11 +353,19 @@ public class MyWorld extends World
         Wall2 wall80 = new Wall2();
         addObject(wall80,1100,825);
     }
+    
+    /**
+     * create the start
+     */
     private void create_start()
     {
         Start start = new Start();
         addObject(start,50,50);
     }
+    
+    /**
+     * create the end
+     */
     private void create_end()
     {
         End end = new End();
