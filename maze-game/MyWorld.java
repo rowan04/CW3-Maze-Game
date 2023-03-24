@@ -1,13 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
 /**
- * Write a description of class MyWorld here.
+ * Creates the world the greenfoot program runs in
  * 
- * @author (your name) 
- * @version (a version number or a date)
  */
 public class MyWorld extends World
 {
-
     /**
      * Constructor for objects of class MyWorld.
      */
@@ -15,11 +13,12 @@ public class MyWorld extends World
     {    
         // Create a new world with 1150x950 cells with a cell size of 1x1 pixels.
         super(1150, 950, 1);
-
-        
-        
         addObject(new Intro(),575,475);
     }
+
+    /**
+     * What happens when program is run
+     */
     public void act()
     {
         if (Greenfoot.getKey() == "enter")
@@ -28,14 +27,15 @@ public class MyWorld extends World
             setPaintOrder(Player.class);
             addPlayer();
             prepareMaze();
+
+            // add ghosts (after maze, so they show over the walls)
             addGhost1();
             addGhost2();
             addGhost3();
             addGhost4();
         }
-        // add ghosts (after maze, so they show over the walls)
-        
     }
+
     /**
      * adds the player
      */
