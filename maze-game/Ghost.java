@@ -41,5 +41,39 @@ public class Ghost extends Actor
     public void move()
     {
         move(2);
+        
+        /**
+         * allow the ghost to change direction randomly (15% chance)
+         */
+        if (Greenfoot.getRandomNumber(100) < 15) {
+            turn(Greenfoot.getRandomNumber(361)-180);
+        }
+        
+        // get ghosts coordinates
+        int x = getX();
+        int y = getY();
+        
+        /**
+         * make it so that the ghost can't leave its specified area
+         */
+        if (x <= lower_x)
+        {
+            setLocation(getX()+2, getY());
+        }
+        
+        if (x >= upper_x)
+        {
+            setLocation(getX()-2, getY());
+        }
+        
+        if (y <= lower_y)
+        {
+            setLocation(getX(), getY()+2);
+        }
+        
+        if (y >= upper_y)
+        {
+            setLocation(getX(), getY()-2);
+        }
     }
 }

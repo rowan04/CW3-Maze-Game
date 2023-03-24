@@ -17,8 +17,8 @@ public class MyWorld extends World
         super(1150, 950, 1);
         setPaintOrder(Player.class);
         addPlayer();
-        addGhost1();
         prepareMaze();
+        addGhost1();
     }
     
     /**
