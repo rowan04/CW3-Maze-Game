@@ -1,8 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ghost here.
- * 
  * The ghost is the enemy of the game.
  * 
  * It moves around randomly in a set area.
@@ -12,11 +10,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Ghost1 extends Actor
 {
-    /**
-     * Act - do whatever the Ghost wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    
     /**
      * these values keep the ghost within their set area
      */
