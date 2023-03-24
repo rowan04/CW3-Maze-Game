@@ -15,6 +15,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 1150x950 cells with a cell size of 1x1 pixels.
         super(1150, 950, 1);
+
         
         
         addObject(new Intro(),575,475);
@@ -27,7 +28,13 @@ public class MyWorld extends World
             setPaintOrder(Player.class);
             addPlayer();
             prepareMaze();
+            addGhost1();
+            addGhost2();
+            addGhost3();
+            addGhost4();
         }
+        // add ghosts (after maze, so they show over the walls)
+        
     }
     /**
      * adds the player
@@ -37,6 +44,90 @@ public class MyWorld extends World
         int x = 15;
         int y = 30;
         addObject(new Player(), x, y);
+    }
+    
+    /**
+     * adds the first ghost
+     */
+    private void addGhost1()
+    {
+        // where the ghost will spawn
+        int x = 675;
+        int y = 175;
+        
+        // creating the limits for the area the ghost will move in
+        Ghost1.lower_x = 575;
+        Ghost1.upper_x = 775;
+        Ghost1.lower_y = 75;
+        Ghost1.upper_y = 275;
+        
+        // creating the ghost
+        Ghost1 Ghost1 = new Ghost1();
+        addObject(Ghost1, x, y);
+        Ghost1.turn(Greenfoot.getRandomNumber(360));
+    }
+    
+    /**
+     * adds the second ghost
+     */
+    private void addGhost2()
+    {
+        // where the ghost will spawn
+        int x = 225;
+        int y = 475;
+        
+        // creating the limits for the area the ghost will move in
+        Ghost2.lower_x = 125;
+        Ghost2.upper_x = 325;
+        Ghost2.lower_y = 375;
+        Ghost2.upper_y = 575;
+        
+        // creating the ghost
+        Ghost2 Ghost2 = new Ghost2();
+        addObject(Ghost2, x, y);
+        Ghost2.turn(Greenfoot.getRandomNumber(360));
+    }
+    
+    /**
+     * adds the third ghost
+     */
+    private void addGhost3()
+    {
+        // where the ghost will spawn
+        int x = 625;
+        int y = 575;
+        
+        // creating the limits for the area the ghost will move in
+        Ghost3.lower_x = 525;
+        Ghost3.upper_x = 725;
+        Ghost3.lower_y = 475;
+        Ghost3.upper_y = 675;
+        
+        // creating the ghost
+        Ghost3 Ghost3 = new Ghost3();
+        addObject(Ghost3, x, y);
+        Ghost3.turn(Greenfoot.getRandomNumber(360));
+    }
+    
+    /**
+     * adds the fourth ghost
+     */
+    private void addGhost4()
+    {
+        // where the ghost will spawn
+        int x = 1025;
+        int y = 375;
+        
+        // creating the limits for the area the ghost will move in
+        Ghost4.lower_x = 925;
+        Ghost4.upper_x = 1125;
+        Ghost4.lower_y = 275;
+        Ghost4.upper_y = 475;
+        
+        // creating the ghost
+        Ghost4 Ghost4 = new Ghost4();
+        addObject(Ghost4, x, y);
+        Ghost4.turn(Greenfoot.getRandomNumber(360));
     }
     
     /**
@@ -54,6 +145,10 @@ public class MyWorld extends World
         create_walls();
         
     }
+    
+    /**
+     * create the walls
+     */
     private void create_walls()
     {
         //discance from 2 midpoint = 50
@@ -337,11 +432,19 @@ public class MyWorld extends World
         Wall2 wall80 = new Wall2();
         addObject(wall80,1100,825);
     }
+    
+    /**
+     * create the start
+     */
     private void create_start()
     {
         Start start = new Start();
         addObject(start,50,50);
     }
+    
+    /**
+     * create the end
+     */
     private void create_end()
     {
         End end = new End();
