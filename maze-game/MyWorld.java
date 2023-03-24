@@ -15,17 +15,27 @@ public class MyWorld extends World
     {    
         // Create a new world with 1150x950 cells with a cell size of 1x1 pixels.
         super(1150, 950, 1);
-        setPaintOrder(Player.class);
-        addPlayer();
-        prepareMaze();
+
         
-        // add ghosts (after maze, so they show over the walls)
-        addGhost1();
-        addGhost2();
-        addGhost3();
-        addGhost4();
+        
+        addObject(new Intro(),575,475);
     }
-    
+    public void act()
+    {
+        if (Greenfoot.getKey() == "enter")
+        {
+            removeObjects(getObjects(null));
+            setPaintOrder(Player.class);
+            addPlayer();
+            prepareMaze();
+            addGhost1();
+            addGhost2();
+            addGhost3();
+            addGhost4();
+        }
+        // add ghosts (after maze, so they show over the walls)
+        
+    }
     /**
      * adds the player
      */
