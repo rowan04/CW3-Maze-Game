@@ -33,6 +33,9 @@ public class MyWorld extends World
             addGhost2();
             addGhost3();
             addGhost4();
+            
+            // add wall breaker
+            addWallBreaker();
         }
     }
 
@@ -128,6 +131,64 @@ public class MyWorld extends World
         Ghost4 Ghost4 = new Ghost4();
         addObject(Ghost4, x, y);
         Ghost4.turn(Greenfoot.getRandomNumber(360));
+    }
+    
+    /**
+     * add the wall breaker
+     */
+    private void addWallBreaker()
+    {
+        // the wall breaker will spawn at one of the selected spawn points, at random
+        int spawn_point = (Greenfoot.getRandomNumber(11));
+        
+        if (spawn_point == 0)
+        {
+            addObject(new WallBreaker(), 25, 375);
+        }
+        if (spawn_point == 1)
+        {
+            addObject(new WallBreaker(), 125, 675);
+        }
+        if (spawn_point == 2)
+        {
+            addObject(new WallBreaker(), 125, 775);
+        }
+        if (spawn_point == 3)
+        {
+            addObject(new WallBreaker(), 225, 775);
+        }
+        if (spawn_point == 4)
+        {
+            addObject(new WallBreaker(), 575, 325);
+        }
+        if (spawn_point == 5)
+        {
+            addObject(new WallBreaker(), 575, 775);
+        }
+        if (spawn_point == 6)
+        {
+            addObject(new WallBreaker(), 675, 775);
+        }
+        if (spawn_point == 7)
+        {
+            addObject(new WallBreaker(), 775, 175);
+        }
+        if (spawn_point == 8)
+        {
+            addObject(new WallBreaker(), 775, 475);
+        }
+        if (spawn_point == 9)
+        {
+            addObject(new WallBreaker(), 875, 175);
+        }
+        if (spawn_point == 10)
+        {
+            addObject(new WallBreaker(), 1125, 75);
+        }
+        if (spawn_point == 11)
+        {
+            addObject(new WallBreaker(), 1125, 475);
+        }
     }
     
     /**
