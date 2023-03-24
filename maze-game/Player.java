@@ -76,7 +76,23 @@ public class Player extends Actor
         {
             Greenfoot.setWorld(new MyWorld());
         }
-        if (isTouching(Ghost.class))
+        
+        /**
+         * if touching any of the ghosts, player dies and loses
+         */
+        if (isTouching(Ghost1.class))
+        {
+            died();
+        }
+        if (isTouching(Ghost2.class))
+        {
+            died();
+        }
+        if (isTouching(Ghost3.class))
+        {
+            died();
+        }
+        if (isTouching(Ghost4.class))
         {
             died();
         }
