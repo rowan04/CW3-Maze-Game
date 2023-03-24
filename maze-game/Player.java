@@ -71,6 +71,10 @@ public class Player extends Actor
         {
             Greenfoot.setWorld(new MyWorld());
         }
+        if (isTouching(Ghost.class))
+        {
+            endGame();
+        }
     }
     private void endGame()//removes all actors except the player then displays information and gives player coice to play again or not
     {

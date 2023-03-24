@@ -17,6 +17,7 @@ public class MyWorld extends World
         super(1150, 950, 1);
         setPaintOrder(Player.class);
         addPlayer();
+        addGhost1();
         prepareMaze();
     }
     
@@ -28,6 +29,22 @@ public class MyWorld extends World
         int x = 15;
         int y = 30;
         addObject(new Player(), x, y);
+    }
+    
+    private void addGhost1()
+    {
+        // where the ghost will spawn
+        int x = 675;
+        int y = 175;
+        
+        // creating the limits for the area the ghost will move in
+        Ghost.lower_x = 575;
+        Ghost.upper_x = 775;
+        Ghost.lower_y = 75;
+        Ghost.upper_y = 275;
+        
+        Ghost Ghost1 = new Ghost();
+        addObject(Ghost1, x, y);
     }
     
     /**
