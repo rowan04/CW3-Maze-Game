@@ -1,8 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ghost here.
- * 
  * The ghost is the enemy of the game.
  * 
  * It moves around randomly in a set area.
@@ -10,15 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 'dies' and loses the game.
  * 
  */
-public class Ghost extends Actor
+public class Ghost2 extends Actor
 {
     /**
-     * Act - do whatever the Ghost wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    
-    /**
-     * these values keep the ghost within a set area
+     * these values keep each ghost within their set area
      */
     public static int lower_x;
     public static int upper_x;
@@ -28,7 +21,7 @@ public class Ghost extends Actor
     /**
      * constructor to resize player to be a better fit for the maze
      */
-    public Ghost()
+    public Ghost2()
     {
         GreenfootImage ghost = getImage();
         int newHeight = (int)ghost.getHeight()/5;
@@ -52,9 +45,9 @@ public class Ghost extends Actor
         move(2);
         
         /**
-         * allow the ghost to change direction randomly (15% chance)
+         * allow the ghost to change direction randomly (3% chance)
          */
-        if (Greenfoot.getRandomNumber(100) < 15) {
+        if (Greenfoot.getRandomNumber(100) < 3) {
             turn(Greenfoot.getRandomNumber(361)-180);
         }
         
@@ -68,21 +61,25 @@ public class Ghost extends Actor
         if (x <= lower_x)
         {
             setLocation(getX()+2, getY());
+            turn(Greenfoot.getRandomNumber(360));
         }
         
         if (x >= upper_x)
         {
             setLocation(getX()-2, getY());
+            turn(Greenfoot.getRandomNumber(360));
         }
         
         if (y <= lower_y)
         {
             setLocation(getX(), getY()+2);
+            turn(Greenfoot.getRandomNumber(360));
         }
         
         if (y >= upper_y)
         {
             setLocation(getX(), getY()-2);
+            turn(Greenfoot.getRandomNumber(360));
         }
     }
 }
