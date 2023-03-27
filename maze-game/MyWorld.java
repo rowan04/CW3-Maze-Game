@@ -27,6 +27,7 @@ public class MyWorld extends World
             setPaintOrder(Player.class);
             addPlayer();
             prepareMaze();
+            Player.hasWallBreaker = false;
 
             // add ghosts (after maze, so they show over the walls)
             addGhost1();
