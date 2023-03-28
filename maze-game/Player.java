@@ -154,12 +154,13 @@ public class Player extends Actor
     private void endGame()
     {
         Greenfoot.playSound("victory.mp3");
+        MyWorld.startTimer = false;
         World world = getWorld();
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
         world.removeObjects(actors);
-        String score = " 200 points";
-        String time = " 425 seconds";
+        String score = " 200 Points";
+        String time = " " + MyWorld.secondsTimer + " Seconds.";
         world.showText("YOU WIN!!!", 575, 350);
         world.showText("Score:" + score, 575, 400);
         world.showText("Time:" + time, 575, 450);
@@ -180,12 +181,13 @@ public class Player extends Actor
     {
         // add losing sound below
         // Greenfoot.playSound("");
+        MyWorld.startTimer = false;
         World world = getWorld();
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
         world.removeObjects(actors);
         String score = " 200 points";
-        String time = " 425 seconds";
+        String time = " " + MyWorld.secondsTimer + " Seconds.";
         world.showText("YOU DIED", 575, 350);
         world.showText("Score:" + score, 575, 400);
         world.showText("Time:" + time, 575, 450);
