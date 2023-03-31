@@ -34,7 +34,10 @@ public class Ghost2 extends Actor
      */
     public void act()
     {
-        move();
+        if(MyWorld.stop == false)
+        {
+            move();
+        }
     }
     
     /**

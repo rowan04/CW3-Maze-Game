@@ -6,6 +6,7 @@ import java.util.Random;
  */
 public class MyWorld extends World
 {
+    public static boolean stop = false;
     private int timer;
     public static int secondsTimer;
     public static boolean startTimer;
@@ -54,8 +55,11 @@ public class MyWorld extends World
         // display timer if startTimer is true
         if (startTimer == true)
         {
-            timer ++;
-            showTimer(timer);
+            if (stop == false)
+            {
+                timer ++;
+                showTimer(timer);
+            }
         }
     }
 

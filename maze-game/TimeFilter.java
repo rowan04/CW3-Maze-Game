@@ -21,13 +21,18 @@ public class TimeFilter extends Actor
      */
     public void act()
     {
-        while (timer<10)
+        timer ++;
+        if(timer<=500)
         {
-            timer ++;
+            MyWorld.stop = true;
             //stop
         }
-        if(timer>10)
+            
+        if(timer>500)
         {
+            MyWorld.stop = false;
+            
+            getWorld().removeObjects(getWorld().getObjects(TimeFilter.class));
             //start
         }
     }
