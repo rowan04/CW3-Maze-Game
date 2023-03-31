@@ -49,14 +49,15 @@ public class MyWorld extends World
             addGhost2();
             addGhost3();
             addGhost4();
-            
-            // add wall breaker
-            addWallBreaker();
-            
-            
+
+            // add in items
+            addItems();
+
             // start the timer, setting it to 0
             timer = 0;
             startTimer = true;
+
+            // play music
             music.playLoop();
         }
         
@@ -257,7 +258,10 @@ public class MyWorld extends World
         }
         return(result);
     }
-    // random number generator that excludes numbers, so items can't spawn in the same place
+
+    /**
+     * random number generator that excludes numbers, so items can't spawn in the same place
+     */
     public int getRandomWithExclusion(Random rnd, int start, int end, int[] exclude) 
     {
         int random = start + rnd.nextInt(end - start + 1 - exclude.length);
@@ -269,28 +273,32 @@ public class MyWorld extends World
         }
         return random;
     }
-    
-    
+
     /**
-     * add the wall breaker
+     * adds the items (speed potion, wall breaker, time freeze)
      */
-    private void addWallBreaker()
+    private void addItems()
     {
-        // the wall breaker will spawn at one of the selected spawn points, at random
-        int[] ex = new int[1];
+        // the items all need to spawn at a different spawn point, which are picked at random
+        int[] ex = new int[2];
         // ex must have different numbers
         Random rnd = new Random();
         int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
-        
         ex[0] = spawn_breaker;
+        
         int spawn_time = getRandomWithExclusion(rnd, 1, 12, ex);
+        ex[0] = spawn_time;
+        
+        int spawn_speed = getRandomWithExclusion(rnd, 1, 12, ex);
         
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
+        int[] result3 = decodeNumber(spawn_speed);
         
+        // add the objects
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);
-
+        addObject(new SpeedPotion(), result3[0], result3[1]);
     }
     
     /**
