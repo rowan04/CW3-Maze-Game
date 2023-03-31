@@ -9,12 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TimeFilter extends Actor
 {
     private int timer;
-    public TimeFilter()   //constructor to resize intro text to be a better fit for the maze
+    public TimeFilter()   //constructor to resize the time filter to fit the maze
     {
         GreenfootImage filter = getImage();
         filter.scale(1150, 950);
         filter.setTransparency(80);
     }
+
     /**
      * Act - do whatever the TimeFilter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
