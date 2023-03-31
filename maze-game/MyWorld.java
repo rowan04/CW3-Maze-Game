@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.Random;
 /**
  * Creates the world the greenfoot program runs in
  * 
@@ -153,62 +153,118 @@ public class MyWorld extends World
         Ghost4.turn(Greenfoot.getRandomNumber(360));
     }
     
+    //adds coordinate decoding for random numbers
+    private int[] decodeNumber(int spawn_point)
+    {
+        int[] result = new int[2];
+        if (spawn_point == 1)
+        {
+            result[0] = 25;
+            result[1] = 375;
+            return(result);
+        }
+        if (spawn_point == 2)
+        {
+            result[0] = 125;
+            result[1] = 675;
+            return(result);
+        }
+        if (spawn_point == 3)
+        {
+            result[0] = 125;
+            result[1] = 775;
+            return(result);
+        }
+        if (spawn_point == 4)
+        {
+            result[0] = 225;
+            result[1] = 775;
+            return(result);
+        }
+        if (spawn_point == 5)
+        {
+            result[0] = 575;
+            result[1] = 325;
+            return(result);
+        }
+        if (spawn_point == 6)
+        {
+            result[0] = 575;
+            result[1] = 775;
+            return(result);
+        }
+        if (spawn_point == 7)
+        {
+            result[0] = 675;
+            result[1] = 775;
+            return(result);
+        }
+        if (spawn_point == 8)
+        {
+            result[0] = 775;
+            result[1] = 175;
+            return(result);
+        }
+        if (spawn_point == 9)
+        {
+            result[0] = 775;
+            result[1] = 475;
+            return(result);
+        }
+        if (spawn_point == 10)
+        {
+            result[0] = 875;
+            result[1] = 175;
+            return(result);
+        }
+        if (spawn_point == 11)
+        {
+            result[0] = 1125;
+            result[1] = 75;
+            return(result);
+        }
+        if (spawn_point == 12)
+        {
+            result[0] = 1125;
+            result[1] = 475;
+            return(result);
+        }
+        return(result);
+    }
+    //random number generator that excludes numbers
+    public int getRandomWithExclusion(Random rnd, int start, int end, int... exclude) 
+    {
+        int random = start + rnd.nextInt(end - start + 1 - exclude.length);
+        for (int ex : exclude) {
+            if (random < ex) {
+                break;
+            }
+            random++;
+        }
+        return random;
+    }
+    
+    
     /**
      * add the wall breaker
      */
     private void addWallBreaker()
     {
         // the wall breaker will spawn at one of the selected spawn points, at random
-        int spawn_point = (Greenfoot.getRandomNumber(11));
+        int[] ex = new int[6];
+        //ex must have different numbers
+        Random rnd = new Random();
+        int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
         
-        if (spawn_point == 0)
-        {
-            addObject(new WallBreaker(), 25, 375);
-        }
-        if (spawn_point == 1)
-        {
-            addObject(new WallBreaker(), 125, 675);
-        }
-        if (spawn_point == 2)
-        {
-            addObject(new WallBreaker(), 125, 775);
-        }
-        if (spawn_point == 3)
-        {
-            addObject(new WallBreaker(), 225, 775);
-        }
-        if (spawn_point == 4)
-        {
-            addObject(new WallBreaker(), 575, 325);
-        }
-        if (spawn_point == 5)
-        {
-            addObject(new WallBreaker(), 575, 775);
-        }
-        if (spawn_point == 6)
-        {
-            addObject(new WallBreaker(), 675, 775);
-        }
-        if (spawn_point == 7)
-        {
-            addObject(new WallBreaker(), 775, 175);
-        }
-        if (spawn_point == 8)
-        {
-            addObject(new WallBreaker(), 775, 475);
-        }
-        if (spawn_point == 9)
-        {
-            addObject(new WallBreaker(), 875, 175);
-        }
-        if (spawn_point == 10)
-        {
-            addObject(new WallBreaker(), 1125, 75);
-        }
-        if (spawn_point == 11)
-        {
-            addObject(new WallBreaker(), 1125, 475);
-        }
+        ex[0] = spawn_breaker;
+        int spawn_time = getRandomWithExclusion(rnd, 1, 12, ex);
+        
+        int[] result1 = decodeNumber(spawn_breaker);
+        int[] result2 = decodeNumber(spawn_time);
+        
+        addObject(new WallBreaker(), result1[0], result1[1]);
+        addObject(new TimePotion(), result2[0], result2[1]);
+
     }
     
     /**
