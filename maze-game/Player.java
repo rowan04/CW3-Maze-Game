@@ -196,6 +196,7 @@ public class Player extends Actor
      */
     private void endGame()
     {
+        ((MyWorld)getWorld()).music.stop();
         Greenfoot.playSound("victory.mp3");
         MyWorld.startTimer = false;
         World world = getWorld();
@@ -222,8 +223,8 @@ public class Player extends Actor
      */
     private void died()
     {
-        // add losing sound below
-        // Greenfoot.playSound("");
+        ((MyWorld)getWorld()).music.stop();
+        Greenfoot.playSound("death.mp3");
         MyWorld.startTimer = false;
         World world = getWorld();
         java.util.List<Actor> actors = world.getObjects(null);

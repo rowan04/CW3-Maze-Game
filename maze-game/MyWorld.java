@@ -1,4 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 /**
  * Creates the world the greenfoot program runs in
@@ -10,7 +13,7 @@ public class MyWorld extends World
     private int timer;
     public static int secondsTimer;
     public static boolean startTimer;
-    
+    public GreenfootSound music = new GreenfootSound("music1.mp3");
     /**
      * Constructor for objects of class MyWorld.
      */
@@ -50,9 +53,11 @@ public class MyWorld extends World
             // add wall breaker
             addWallBreaker();
             
+            
             // start the timer, setting it to 0
             timer = 0;
             startTimer = true;
+            music.playLoop();
         }
         
         // display timer if startTimer is true and stop is false
@@ -64,6 +69,20 @@ public class MyWorld extends World
                 showTimer(timer);
             }
         }
+    }
+    
+    //loops background music
+    private void playMusic()
+    {
+        List<Integer> numbers = Arrays.asList(0, 1, 2, 3);
+        Collections.shuffle(numbers);
+        
+        List<String> songs = Arrays.asList("music1.mp3", "music2.mp3", "music3.mp3", "music4.mp3");
+        
+        Greenfoot.playSound(songs.get(numbers.get(0)));
+        Greenfoot.playSound(songs.get(numbers.get(1)));
+        Greenfoot.playSound(songs.get(numbers.get(2)));
+        Greenfoot.playSound(songs.get(numbers.get(3)));
     }
 
     /**
