@@ -171,6 +171,9 @@ public class Player extends Actor
         World world;
         world = getWorld();
         world.removeObject(WallBreaker);
+        
+        Breaker_icon breaker = new Breaker_icon();
+        world.addObject(breaker,1100,900);
     }
 
     /**
@@ -184,6 +187,7 @@ public class Player extends Actor
             World world;
             world = getWorld();
             world.removeObject(Breakable);
+            getWorld().removeObjects(getWorld().getObjects(Breaker_icon.class));
         }
         else
         {
@@ -212,6 +216,7 @@ public class Player extends Actor
         world.showText("Play again", 875, 675);
         Again again = new Again();
         world.addObject(again,875,725);
+        world.showText(null, 925, 875);
         
         world.showText("Quit game", 1075, 475);
         Quit quit = new Quit();
@@ -235,6 +240,7 @@ public class Player extends Actor
         world.showText("YOU DIED", 575, 350);
         world.showText("Score:" + score, 575, 400);
         world.showText("Time:" + time, 575, 450);
+        world.showText(null, 925, 875);
         
         world.showText("Play again", 875, 675);
         Again again = new Again();
