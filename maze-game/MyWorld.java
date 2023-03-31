@@ -40,9 +40,12 @@ public class MyWorld extends World
             addPlayer();
             prepareMaze();
 
-            // ensure time freeze and player having the wallBreaker are set to false, this was an issue after resets
-            Player.hasWallBreaker = false;
+            // ensure time freeze, player having/using speed potion and player having the wallBreaker are set to false, this was an issue after resets
             stop = false;
+            Player.hasWallBreaker = false;
+            Player.hasSpeedPotion = false;
+            Player.useSpeedPotion = false;
+            Player.activateSpeedPotion = false;
 
             // add ghosts (after maze, so they show over the walls)
             addGhost1();
@@ -283,18 +286,19 @@ public class MyWorld extends World
         int[] ex = new int[2];
         // ex must have different numbers
         Random rnd = new Random();
+        
         int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
         ex[0] = spawn_breaker;
-        
+
         int spawn_time = getRandomWithExclusion(rnd, 1, 12, ex);
-        ex[0] = spawn_time;
-        
+        ex[1] = spawn_time;
+
         int spawn_speed = getRandomWithExclusion(rnd, 1, 12, ex);
-        
+
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
         int[] result3 = decodeNumber(spawn_speed);
-        
+
         // add the objects
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);

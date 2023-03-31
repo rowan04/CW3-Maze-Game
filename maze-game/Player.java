@@ -9,6 +9,15 @@ public class Player extends Actor
     public static boolean hasWallBreaker = false;
     public static boolean freeze = false;
     
+    // to clear confusion:
+    // - hasSpeedPotion is true when the player picks up the speed potion
+    // - useSpeedPotion is true when the player presses 2, regardless of whether they have a speed potion or not
+    // - activateSpeedPotion is true when hasSpeedPotion and useSpeedPotion are both true
+    public static boolean hasSpeedPotion = false;
+    public static boolean useSpeedPotion = false;
+    public static boolean activateSpeedPotion = false;
+    public static int speedTimer = 300;
+    
     /**
      * constructor to resize player to be a better fit for the maze
      */
@@ -29,28 +38,69 @@ public class Player extends Actor
         int dx = 0, dy = 0;
         String dir = "none";
 
-        if (Greenfoot.isKeyDown("up"))
+        //check if speed potion has been activated - if it has, player moves twice as fast
+        if (activateSpeedPotion == true)
         {
-            dy = -2;
+            if (Greenfoot.isKeyDown("up"))
+            {
+                dy = -4;
+            }
+            if (Greenfoot.isKeyDown("left"))
+            {
+                dx = -4;
+            }
+            if (Greenfoot.isKeyDown("down"))
+            {
+                dy = 4;
+            }
+            if (Greenfoot.isKeyDown("right"))
+            {
+                dx = 4;
+            }
         }
-        if (Greenfoot.isKeyDown("left"))
+        // else, speed potion is not being used, so player moves normal speed
+        else
         {
-            dx = -2;
+            if (Greenfoot.isKeyDown("up"))
+            {
+                dy = -2;
+            }
+            if (Greenfoot.isKeyDown("left"))
+            {
+                dx = -2;
+            }
+            if (Greenfoot.isKeyDown("down"))
+            {
+                dy = 2;
+            }
+            if (Greenfoot.isKeyDown("right"))
+            {
+                dx = 2;
+            }
         }
-        if (Greenfoot.isKeyDown("down"))
-        {
-            dy = 2;
-        }
-        if (Greenfoot.isKeyDown("right"))
-        {
-            dx = 2;
-        }
+
         if(Greenfoot.isKeyDown("1") == true)
         {
             if(freeze == true)
             {
                 timeFrozen();
             }
+        }
+
+        if(Greenfoot.isKeyDown("2") == true)
+        {
+            //useSpeedPotion = true;
+            if(hasSpeedPotion == true)
+            {
+                useSpeedPotion = true;
+                // speed potion has been used, so no longer has a speed potion
+                hasSpeedPotion = false;
+            }
+        }
+        
+        if (useSpeedPotion == true)
+        {
+            useSpeedPotion(speedTimer);
         }
 
         setLocation(getX()+dx, getY()+dy);
@@ -125,6 +175,14 @@ public class Player extends Actor
         }
 
         /**
+         * if touching a speed potion, call the collectSpeedPotion function
+         */
+        if (isTouching(SpeedPotion.class))
+        {
+            collectSpeedPotion();
+        }
+
+        /**
          * if is touching a breakable wall, call touchingBreakable function
          */
         if (isTouching(Breakable.class))
@@ -132,6 +190,7 @@ public class Player extends Actor
             touchingBreakable(hasWallBreaker, dx, dy);
         }
     }
+
     private void timeFrozen()
     {
         getWorld().removeObjects(getWorld().getObjects(Time_option_1.class));
@@ -141,24 +200,6 @@ public class Player extends Actor
         
         freeze = false;
     }
-    
-    
-    /**
-     * if player is touching time freeze, collect it, then delete the time freeze object
-     */
-    private void collectTimePotion()
-    {
-        freeze = true;
-        Actor TimePotion;
-        TimePotion = getOneObjectAtOffset(0, 0, TimePotion.class);
-        World world;
-        world = getWorld();
-        world.removeObject(TimePotion);
-        
-        Time_option_1 time = new Time_option_1();
-        world.addObject(time,50,900);
-    }
-    
 
     /**
      * if player is touching wallBreaker, collect it, then delete the wallBreaker object
@@ -174,6 +215,60 @@ public class Player extends Actor
         
         Breaker_icon breaker = new Breaker_icon();
         world.addObject(breaker,1100,900);
+    }
+
+    /**
+     * if player is touching time freeze, collect it, then delete the time freeze object
+     */
+    private void collectTimePotion()
+    {
+        freeze = true;
+        Actor TimePotion;
+        TimePotion = getOneObjectAtOffset(0, 0, TimePotion.class);
+        World world;
+        world = getWorld();
+        world.removeObject(TimePotion);
+        
+        Time_option_1 time = new Time_option_1();
+        world.addObject(time,50,900);
+    }
+
+    /**
+     * if player is touching speed potion, collect it, then delete the speed potion object
+     */
+    private void collectSpeedPotion()
+    {
+        hasSpeedPotion = true;
+        Actor SpeedPotion;
+        SpeedPotion = getOneObjectAtOffset(0, 0, SpeedPotion.class);
+        World world;
+        world = getWorld();
+        world.removeObject(SpeedPotion);
+        
+        //Breaker_icon breaker = new Breaker_icon();
+        //world.addObject(breaker,1100,900);
+    }
+
+    /**
+     * what happens when speedPotion is used
+     */
+    private void useSpeedPotion(int speedTimer)
+    {
+        if (speedTimer > 0)
+        {
+            activateSpeedPotion = true;
+            speedTimer--;
+        }
+        else
+        {
+            resetSpeed();
+        }
+    }
+    
+    private void resetSpeed()
+    {
+        useSpeedPotion = false;
+        activateSpeedPotion = false;
     }
 
     /**
