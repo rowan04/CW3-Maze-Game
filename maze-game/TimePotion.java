@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TimePotion extends Actor
 {
-    public boolean ZaWurudo = false;
     /**
      * Act - do whatever the TimePotion wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -20,9 +19,6 @@ public class TimePotion extends Actor
     }
     public void act()
     {
-        if (isTouching(Player.class))
-        {
-            ZaWurudo = true;
-        }
+        
     }
 }

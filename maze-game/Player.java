@@ -7,6 +7,7 @@ import java.lang.*;  //allows checking signs on integers
 public class Player extends Actor
 {
     public static boolean hasWallBreaker = false;
+    public static boolean freeze = false;
     
     /**
      * constructor to resize player to be a better fit for the maze
@@ -43,6 +44,13 @@ public class Player extends Actor
         if (Greenfoot.isKeyDown("right"))
         {
             dx = 2;
+        }
+        if(Greenfoot.isKeyDown("1") == true)
+        {
+            if(freeze == true)
+            {
+                zaWurudo();
+            }
         }
 
         setLocation(getX()+dx, getY()+dy);
@@ -107,6 +115,14 @@ public class Player extends Actor
         {
             collectWallBreaker();
         }
+        
+        /**
+         * if touching the time freeze, call the collectTimePotion function
+         */
+        if (isTouching(TimePotion.class))
+        {
+            collectTimePotion();
+        }
 
         /**
          * if is touching a breakable wall, call touchingBreakable function
@@ -116,6 +132,33 @@ public class Player extends Actor
             touchingBreakable(hasWallBreaker, dx, dy);
         }
     }
+    private void zaWurudo()
+    {
+        getWorld().removeObjects(getWorld().getObjects(Time_option_1.class));
+        Greenfoot.playSound("stop_time.mp3");
+        TimeFilter time = new TimeFilter();
+        getWorld().addObject(time,575,475);
+        
+        freeze = false;
+    }
+    
+    
+    /**
+     * if player is touching time freeze, collect it, then delete the time freeze object
+     */
+    private void collectTimePotion()
+    {
+        freeze = true;
+        Actor TimePotion;
+        TimePotion = getOneObjectAtOffset(0, 0, TimePotion.class);
+        World world;
+        world = getWorld();
+        world.removeObject(TimePotion);
+        
+        Time_option_1 time = new Time_option_1();
+        world.addObject(time,50,900);
+    }
+    
 
     /**
      * if player is touching wallBreaker, collect it, then delete the wallBreaker object

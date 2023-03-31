@@ -1,0 +1,34 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class TimeFilter here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class TimeFilter extends Actor
+{
+    private int timer;
+    public TimeFilter()   //constructor to resize intro text to be a better fit for the maze
+    {
+        GreenfootImage intro = getImage();
+        intro.scale(1150, 950);
+        intro.setTransparency(80);
+    }
+    /**
+     * Act - do whatever the TimeFilter wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        while (timer<10)
+        {
+            timer ++;
+            //stop
+        }
+        if(timer>10)
+        {
+            //start
+        }
+    }
+}

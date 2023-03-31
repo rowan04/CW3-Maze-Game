@@ -241,7 +241,7 @@ public class MyWorld extends World
             }
             random++;
         }
-        return random;
+        return random;//somehow they stay on seperate sides FIX THIS
     }
     
     
@@ -291,7 +291,7 @@ public class MyWorld extends World
         secondsTimer = timer/60;
         
         // show how much time has passed
-        showText("Time: " + secondsTimer, 60, 875);
+        showText("Time: " + secondsTimer, 925, 875);
     }
     
     /**
