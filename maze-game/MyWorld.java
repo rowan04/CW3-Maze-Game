@@ -236,7 +236,7 @@ public class MyWorld extends World
         return(result);
     }
     //random number generator that excludes numbers
-    public int getRandomWithExclusion(Random rnd, int start, int end, int... exclude) 
+    public int getRandomWithExclusion(Random rnd, int start, int end, int[] exclude) 
     {
         int random = start + rnd.nextInt(end - start + 1 - exclude.length);
         for (int ex : exclude) {
@@ -255,7 +255,7 @@ public class MyWorld extends World
     private void addWallBreaker()
     {
         // the wall breaker will spawn at one of the selected spawn points, at random
-        int[] ex = new int[6];
+        int[] ex = new int[1];
         //ex must have different numbers
         Random rnd = new Random();
         int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
