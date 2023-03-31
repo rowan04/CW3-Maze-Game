@@ -6,6 +6,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+    private int timer;
+    public static int secondsTimer;
+    public static boolean startTimer;
+    
     /**
      * Constructor for objects of class MyWorld.
      */
@@ -14,6 +18,10 @@ public class MyWorld extends World
         // Create a new world with 1150x950 cells with a cell size of 1x1 pixels.
         super(1150, 950, 1);
         addObject(new Intro(),575,475);
+        
+        // ensure startTimer is set to false
+        // as otherwise, stays as true when world resets
+        startTimer = false;
     }
 
     /**
@@ -27,12 +35,27 @@ public class MyWorld extends World
             setPaintOrder(Player.class);
             addPlayer();
             prepareMaze();
+            Player.hasWallBreaker = false;
 
             // add ghosts (after maze, so they show over the walls)
             addGhost1();
             addGhost2();
             addGhost3();
             addGhost4();
+            
+            // add wall breaker
+            addWallBreaker();
+            
+            // start the timer, setting it to 0
+            timer = 0;
+            startTimer = true;
+        }
+        
+        // display timer if startTimer is true
+        if (startTimer == true)
+        {
+            timer ++;
+            showTimer(timer);
         }
     }
 
@@ -131,6 +154,64 @@ public class MyWorld extends World
     }
     
     /**
+     * add the wall breaker
+     */
+    private void addWallBreaker()
+    {
+        // the wall breaker will spawn at one of the selected spawn points, at random
+        int spawn_point = (Greenfoot.getRandomNumber(11));
+        
+        if (spawn_point == 0)
+        {
+            addObject(new WallBreaker(), 25, 375);
+        }
+        if (spawn_point == 1)
+        {
+            addObject(new WallBreaker(), 125, 675);
+        }
+        if (spawn_point == 2)
+        {
+            addObject(new WallBreaker(), 125, 775);
+        }
+        if (spawn_point == 3)
+        {
+            addObject(new WallBreaker(), 225, 775);
+        }
+        if (spawn_point == 4)
+        {
+            addObject(new WallBreaker(), 575, 325);
+        }
+        if (spawn_point == 5)
+        {
+            addObject(new WallBreaker(), 575, 775);
+        }
+        if (spawn_point == 6)
+        {
+            addObject(new WallBreaker(), 675, 775);
+        }
+        if (spawn_point == 7)
+        {
+            addObject(new WallBreaker(), 775, 175);
+        }
+        if (spawn_point == 8)
+        {
+            addObject(new WallBreaker(), 775, 475);
+        }
+        if (spawn_point == 9)
+        {
+            addObject(new WallBreaker(), 875, 175);
+        }
+        if (spawn_point == 10)
+        {
+            addObject(new WallBreaker(), 1125, 75);
+        }
+        if (spawn_point == 11)
+        {
+            addObject(new WallBreaker(), 1125, 475);
+        }
+    }
+    
+    /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
      */
@@ -144,6 +225,17 @@ public class MyWorld extends World
         create_end();
         create_walls();
         
+    }
+    
+    private void showTimer(int timer)
+    {
+        // divide timer by 60, to turn it into seconds
+        // secondsTimer being set to int is fine - 
+        // it only shows whole seconds, not decimals
+        secondsTimer = timer/60;
+        
+        // show how much time has passed
+        showText("Time: " + secondsTimer, 60, 875);
     }
     
     /**
