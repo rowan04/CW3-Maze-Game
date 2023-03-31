@@ -12,10 +12,10 @@ public class Time_option_1 extends Actor
      * Act - do whatever the Time_option_1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public Time_option_1()   //constructor to resize breakable wall to be a better fit for the maze
+    public Time_option_1()   //constructor to resize time stop inventory icon to fit in the inventory
     {
-        GreenfootImage brick = getImage();
-        brick.scale(100, 100);
+        GreenfootImage inv_1 = getImage();
+        inv_1.scale(100, 100);
     }
     public void act()
     {

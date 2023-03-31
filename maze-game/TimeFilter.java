@@ -11,9 +11,9 @@ public class TimeFilter extends Actor
     private int timer;
     public TimeFilter()   //constructor to resize intro text to be a better fit for the maze
     {
-        GreenfootImage intro = getImage();
-        intro.scale(1150, 950);
-        intro.setTransparency(80);
+        GreenfootImage filter = getImage();
+        filter.scale(1150, 950);
+        filter.setTransparency(80);
     }
     /**
      * Act - do whatever the TimeFilter wants to do. This method is called whenever
@@ -33,7 +33,6 @@ public class TimeFilter extends Actor
             MyWorld.stop = false;
             
             getWorld().removeObjects(getWorld().getObjects(TimeFilter.class));
-            //start
         }
     }
 }

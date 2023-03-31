@@ -49,7 +49,7 @@ public class Player extends Actor
         {
             if(freeze == true)
             {
-                zaWurudo();
+                timeFrozen();
             }
         }
 
@@ -132,7 +132,7 @@ public class Player extends Actor
             touchingBreakable(hasWallBreaker, dx, dy);
         }
     }
-    private void zaWurudo()
+    private void timeFrozen()
     {
         getWorld().removeObjects(getWorld().getObjects(Time_option_1.class));
         Greenfoot.playSound("stop_time.mp3");

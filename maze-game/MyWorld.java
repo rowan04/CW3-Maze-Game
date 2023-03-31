@@ -267,7 +267,7 @@ public class MyWorld extends World
             }
             random++;
         }
-        return random;//somehow they stay on seperate sides FIX THIS
+        return random;
     }
     
     

@@ -14,8 +14,8 @@ public class TimePotion extends Actor
      */
     public TimePotion()   //constructor to resize time freeze to be a better fit for the maze
     {
-        GreenfootImage brick = getImage();
-        brick.scale(50, 50);
+        GreenfootImage size = getImage();
+        size.scale(50, 50);
     }
     public void act()
     {
