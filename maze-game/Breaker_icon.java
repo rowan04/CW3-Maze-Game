@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Breaker_icon extends Actor
 {
-    public Breaker_icon()   //constructor to resize time freeze to be a better fit for the maze
+    public Breaker_icon()   // constructor to resize breaker icon to be a better fit for the maze
     {
         GreenfootImage icon = getImage();
         icon.scale(100, 100);
