@@ -36,7 +36,10 @@ public class MyWorld extends World
             setPaintOrder(Player.class);
             addPlayer();
             prepareMaze();
+
+            // ensure time freeze and player having the wallBreaker are set to false, this was an issue after resets
             Player.hasWallBreaker = false;
+            stop = false;
 
             // add ghosts (after maze, so they show over the walls)
             addGhost1();
