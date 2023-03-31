@@ -55,7 +55,7 @@ public class MyWorld extends World
             startTimer = true;
         }
         
-        // display timer if startTimer is true
+        // display timer if startTimer is true and stop is false
         if (startTimer == true)
         {
             if (stop == false)
@@ -160,7 +160,7 @@ public class MyWorld extends World
         Ghost4.turn(Greenfoot.getRandomNumber(360));
     }
     
-    //adds coordinate decoding for random numbers
+    // adds coordinate decoding for random numbers
     private int[] decodeNumber(int spawn_point)
     {
         int[] result = new int[2];
@@ -238,7 +238,7 @@ public class MyWorld extends World
         }
         return(result);
     }
-    //random number generator that excludes numbers
+    // random number generator that excludes numbers, so items can't spawn in the same place
     public int getRandomWithExclusion(Random rnd, int start, int end, int[] exclude) 
     {
         int random = start + rnd.nextInt(end - start + 1 - exclude.length);
@@ -259,7 +259,7 @@ public class MyWorld extends World
     {
         // the wall breaker will spawn at one of the selected spawn points, at random
         int[] ex = new int[1];
-        //ex must have different numbers
+        // ex must have different numbers
         Random rnd = new Random();
         int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
         
