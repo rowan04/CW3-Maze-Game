@@ -27,7 +27,8 @@ public class Player extends Actor
      */
     public void act()
     {
-        int dx = 0, dy = 0;
+        int dx = 0;
+        int dy = 0;
         String dir = "none";
 
         if (Greenfoot.isKeyDown("up"))
@@ -77,6 +78,13 @@ public class Player extends Actor
 
         if (isTouching(Wall3.class))
         {
+            setLocation(getX()-dx, getY()-dy);
+        }
+        
+        if (isTouching(Moveable.class))
+        {
+            Actor moveable = getOneIntersectingObject(Moveable.class);
+            moveable.setLocation(moveable.getX()+dx, moveable.getY()+dy);
             setLocation(getX()-dx, getY()-dy);
         }
 
