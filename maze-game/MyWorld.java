@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 /**
  * Creates the world the greenfoot program runs in
@@ -258,16 +259,29 @@ public class MyWorld extends World
         return(result);
     }
     // random number generator that excludes numbers, so items can't spawn in the same place
-    public int getRandomWithExclusion(Random rnd, int start, int end, int[] exclude) 
+    public int getRandomWithExclusion(Random rnd, int start, int end, Integer[] exclude) 
     {
-        int random = start + rnd.nextInt(end - start + 1 - exclude.length);
-        for (int ex : exclude) {
-            if (random < ex) {
-                break;
+        if (exclude == null)
+        {
+            int random = 0;
+            while (true)
+            {
+                random = rnd.nextInt(13);
+                if(random !=0) break;
             }
-            random++;
+            return random;
         }
-        return random;
+        else
+        {
+            int random = start + rnd.nextInt(end - start + 1 - exclude.length);
+            for (int ex : exclude) {
+                if (random < ex) {
+                    break;
+                }
+                random++;
+            }
+            return random;
+        }
     }
     
     
@@ -277,12 +291,14 @@ public class MyWorld extends World
     private void addWallBreaker()
     {
         // the wall breaker will spawn at one of the selected spawn points, at random
-        int[] ex = new int[1];
+        List<Integer> ex_list = new ArrayList<Integer>();
+        Integer[] ex = null;
         // ex must have different numbers
         Random rnd = new Random();
         int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
         
-        ex[0] = spawn_breaker;
+        ex_list.add(spawn_breaker);
+        ex = ex_list.toArray(new Integer[ex_list.size()]);
         int spawn_time = getRandomWithExclusion(rnd, 1, 12, ex);
         
         int[] result1 = decodeNumber(spawn_breaker);
