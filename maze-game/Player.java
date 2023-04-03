@@ -148,6 +148,10 @@ public class Player extends Actor
      */
     private void collectTimePotion()
     {
+        if (freeze == false)
+        {
+            MyWorld.score += 10;
+        }
         freeze = true;
         Actor TimePotion;
         TimePotion = getOneObjectAtOffset(0, 0, TimePotion.class);
@@ -165,6 +169,10 @@ public class Player extends Actor
      */
     private void collectWallBreaker()
     {
+        if (hasWallBreaker == false)
+        {
+            MyWorld.score += 10;
+        }
         hasWallBreaker = true;
         Actor WallBreaker;
         WallBreaker = getOneObjectAtOffset(0, 0, WallBreaker.class);
@@ -203,11 +211,27 @@ public class Player extends Actor
         ((MyWorld)getWorld()).music.stop();
         Greenfoot.playSound("victory.mp3");
         MyWorld.startTimer = false;
+        
+        MyWorld.score += 100;
+        
+        if (MyWorld.secondsTimer < 30)          //these are meant to stack
+        {
+            MyWorld.score += 50;
+        }
+        if (MyWorld.secondsTimer < 60)
+        {
+            MyWorld.score += 25;
+        }
+        if (MyWorld.secondsTimer < 120)
+        {
+            MyWorld.score += 10;
+        }
+        
         World world = getWorld();
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
         world.removeObjects(actors);
-        String score = " 200 Points";
+        String score = " " + MyWorld.score;
         String time = " " + MyWorld.secondsTimer + " Seconds.";
         world.showText("YOU WIN!!!", 575, 350);
         world.showText("Score:" + score, 575, 400);
@@ -235,7 +259,7 @@ public class Player extends Actor
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
         world.removeObjects(actors);
-        String score = " 200 points";
+        String score = " " + MyWorld.score;
         String time = " " + MyWorld.secondsTimer + " Seconds.";
         world.showText("YOU DIED", 575, 350);
         world.showText("Score:" + score, 575, 400);

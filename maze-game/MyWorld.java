@@ -13,6 +13,7 @@ public class MyWorld extends World
     public static boolean stop = false;
     private int timer;
     public static int secondsTimer;
+    public static int score;
     public static boolean startTimer;
     public GreenfootSound music = new GreenfootSound("music1.mp3");
     /**
@@ -36,6 +37,8 @@ public class MyWorld extends World
     {
         if (Greenfoot.getKey() == "enter")
         {
+            score = 0;
+            stop = false;
             removeObjects(getObjects(null));
             setPaintOrder(Player.class);
             addPlayer();
