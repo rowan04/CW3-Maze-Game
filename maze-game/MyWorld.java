@@ -63,6 +63,7 @@ public class MyWorld extends World
             startTimer = true;
             music.playLoop();
         }
+        showText("score: " + score, 725, 875);
         
         // display timer if startTimer is true and stop is false
         if (startTimer == true)

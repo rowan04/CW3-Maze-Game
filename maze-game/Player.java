@@ -148,13 +148,9 @@ public class Player extends Actor
      */
     private void collectTimePotion()
     {
-        if (freeze == false)
-        {
-            MyWorld.score += 10;
-        }
+        MyWorld.score += 10;
         freeze = true;
-        Actor TimePotion;
-        TimePotion = getOneObjectAtOffset(0, 0, TimePotion.class);
+        Actor TimePotion = getOneIntersectingObject(TimePotion.class);
         World world;
         world = getWorld();
         world.removeObject(TimePotion);
@@ -169,13 +165,9 @@ public class Player extends Actor
      */
     private void collectWallBreaker()
     {
-        if (hasWallBreaker == false)
-        {
-            MyWorld.score += 10;
-        }
+        MyWorld.score += 10;
         hasWallBreaker = true;
-        Actor WallBreaker;
-        WallBreaker = getOneObjectAtOffset(0, 0, WallBreaker.class);
+        Actor WallBreaker = getOneIntersectingObject(WallBreaker.class);
         World world;
         world = getWorld();
         world.removeObject(WallBreaker);
@@ -241,6 +233,7 @@ public class Player extends Actor
         Again again = new Again();
         world.addObject(again,875,725);
         world.showText(null, 925, 875);
+        world.showText(null, 825, 875);
         
         world.showText("Quit game", 1075, 475);
         Quit quit = new Quit();
@@ -265,6 +258,7 @@ public class Player extends Actor
         world.showText("Score:" + score, 575, 400);
         world.showText("Time:" + time, 575, 450);
         world.showText(null, 925, 875);
+        world.showText(null, 825, 875);
         
         world.showText("Play again", 875, 675);
         Again again = new Again();
