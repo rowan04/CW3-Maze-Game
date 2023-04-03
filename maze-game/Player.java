@@ -188,6 +188,7 @@ public class Player extends Actor
             world = getWorld();
             world.removeObject(Breakable);
             getWorld().removeObjects(getWorld().getObjects(Breaker_icon.class));
+            Greenfoot.playSound("break.mp3");
         }
         else
         {
