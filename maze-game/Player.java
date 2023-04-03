@@ -9,7 +9,7 @@ public class Player extends Actor
     public static boolean hasWallBreaker = false;
     public static boolean freeze = false;
     public static boolean hasTeleport = false;
-    
+    private MyWorld myworld;
     /**
      * constructor to resize player to be a better fit for the maze
      */
@@ -184,6 +184,12 @@ public class Player extends Actor
         if (isTouching(Breakable.class))
         {
             touchingBreakable(hasWallBreaker, dx, dy);
+        }
+        
+        //if touching the send to puzzel room 1 actor they are sent to that room
+        if (isTouching(Puzzel_world_1_tp.class))
+        {
+            //teleport to other world (save current world and when going back make sure player doesn't get caught in a teleport loop between the 2 worlds)
         }
     }
     private void timeFrozen()
