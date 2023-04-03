@@ -46,6 +46,8 @@ public class MyWorld extends World
 
             // ensure time freeze and player having the wallBreaker are set to false, this was an issue after resets
             Player.hasWallBreaker = false;
+            Player.freeze = false;
+            Player.hasTeleport = false;
             stop = false;
 
             // add ghosts (after maze, so they show over the walls)
@@ -55,7 +57,7 @@ public class MyWorld extends World
             addGhost4();
             
             // add wall breaker
-            addWallBreaker();
+            addItems();
             
             
             // start the timer, setting it to 0
@@ -77,7 +79,7 @@ public class MyWorld extends World
     }
     
     //loops background music
-    private void playMusic()
+    private void playMusic()                //mot in use
     {
         List<Integer> numbers = Arrays.asList(0, 1, 2, 3);
         Collections.shuffle(numbers);
@@ -290,9 +292,9 @@ public class MyWorld extends World
     
     
     /**
-     * add the wall breaker
+     * add the items
      */
-    private void addWallBreaker()
+    private void addItems()
     {
         // the wall breaker will spawn at one of the selected spawn points, at random
         List<Integer> ex_list = new ArrayList<Integer>();
@@ -302,14 +304,25 @@ public class MyWorld extends World
         int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
         
         ex_list.add(spawn_breaker);
+        Collections.sort(ex_list);
         ex = ex_list.toArray(new Integer[ex_list.size()]);
         int spawn_time = getRandomWithExclusion(rnd, 1, 12, ex);
+        
+        ex = null;
+        ex_list.add(spawn_time);
+        Collections.sort(ex_list);
+        ex = ex_list.toArray(new Integer[ex_list.size()]);
+        int spawn_tele = getRandomWithExclusion(rnd, 1, 12, ex);
         
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
         
+        int[] result4 = decodeNumber(spawn_tele);
+        
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);
+        
+        addObject(new Teleport(), result4[0], result4[1]);
 
     }
     
