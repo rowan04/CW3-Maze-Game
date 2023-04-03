@@ -8,6 +8,7 @@ public class Player extends Actor
 {
     public static boolean hasWallBreaker = false;
     public static boolean freeze = false;
+    public static boolean hasTeleport = false;
     
     /**
      * constructor to resize player to be a better fit for the maze
@@ -52,6 +53,15 @@ public class Player extends Actor
                 timeFrozen();
             }
         }
+        
+        
+        if(Greenfoot.isKeyDown("3") == true)
+        {
+            if(hasTeleport == true)
+            {
+                teleport();
+            }
+        }
 
         setLocation(getX()+dx, getY()+dy);
 
@@ -90,22 +100,50 @@ public class Player extends Actor
          */
         if (isTouching(Ghost1.class))
         {
-            died();
+            if(hasTeleport == true)
+            {
+                teleport();
+            }
+            else
+            {
+                died();
+            }
         }
 
         if (isTouching(Ghost2.class))
         {
-            died();
+            if(hasTeleport == true)
+            {
+                teleport();
+            }
+            else
+            {
+                died();
+            }
         }
 
         if (isTouching(Ghost3.class))
         {
-            died();
+            if(hasTeleport == true)
+            {
+                teleport();
+            }
+            else
+            {
+                died();
+            }
         }
 
         if (isTouching(Ghost4.class))
         {
-            died();
+            if(hasTeleport == true)
+            {
+                teleport();
+            }
+            else
+            {
+                died();
+            }
         }
 
         /**
@@ -122,6 +160,14 @@ public class Player extends Actor
         if (isTouching(TimePotion.class))
         {
             collectTimePotion();
+        }
+        
+        /**
+         * if touching the teleporter, call the collectTeleporter function
+         */
+        if (isTouching(Teleport.class))
+        {
+            collectTeleporter();
         }
 
         /**
@@ -142,6 +188,27 @@ public class Player extends Actor
         freeze = false;
     }
     
+    private void teleport()
+    {
+        getWorld().removeObjects(getWorld().getObjects(Tele_option_3.class));
+        Greenfoot.playSound("teleport.mp3");
+        setLocation(15, 30);
+    }
+    /**
+     * if player is touching teleport item, collect it, then delete the teleport item on thte maze
+     */
+    private void collectTeleporter()
+    {
+        MyWorld.score += 10;
+        hasTeleport = true;
+        Actor Teleport = getOneIntersectingObject(Teleport.class);
+        World world;
+        world = getWorld();
+        world.removeObject(Teleport);
+        
+        Tele_option_3 tele = new Tele_option_3();
+        world.addObject(tele,250,900);
+    }
     
     /**
      * if player is touching time freeze, collect it, then delete the time freeze object

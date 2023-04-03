@@ -46,6 +46,8 @@ public class MyWorld extends World
 
             // ensure time freeze and player having the wallBreaker are set to false, this was an issue after resets
             Player.hasWallBreaker = false;
+            Player.freeze = false;
+            Player.hasTeleport = false;
             stop = false;
 
             // add ghosts (after maze, so they show over the walls)
@@ -55,7 +57,7 @@ public class MyWorld extends World
             addGhost4();
             
             // add wall breaker
-            addWallBreaker();
+            addItems();
             
             
             // start the timer, setting it to 0
@@ -77,7 +79,7 @@ public class MyWorld extends World
     }
     
     //loops background music
-    private void playMusic()
+    private void playMusic()                //mot in use
     {
         List<Integer> numbers = Arrays.asList(0, 1, 2, 3);
         Collections.shuffle(numbers);
@@ -290,9 +292,9 @@ public class MyWorld extends World
     
     
     /**
-     * add the wall breaker
+     * add the items
      */
-    private void addWallBreaker()
+    private void addItems()
     {
         // the wall breaker will spawn at one of the selected spawn points, at random
         List<Integer> ex_list = new ArrayList<Integer>();
