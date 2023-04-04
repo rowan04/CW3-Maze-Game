@@ -270,7 +270,7 @@ public class Player extends Actor
         MyWorld.score += 10;
         hasWallBreaker = true;
         Actor WallBreaker;
-        WallBreaker = getOneObjectAtOffset(0, 0, WallBreaker.class);
+        WallBreaker = getOneIntersectingObject(WallBreaker.class);
         World world;
         world = getWorld();
         world.removeObject(WallBreaker);
