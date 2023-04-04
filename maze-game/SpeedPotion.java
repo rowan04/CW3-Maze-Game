@@ -14,9 +14,10 @@ public class SpeedPotion extends Actor
     public SpeedPotion()
     {
         GreenfootImage speedPotion = getImage();
-        int newHeight = (int)speedPotion.getHeight()/12;
-        int newWidth = (int)speedPotion.getWidth()/12;
-        speedPotion.scale(newWidth, newHeight);
+        //int newHeight = (int)speedPotion.getHeight()/12;
+        //int newWidth = (int)speedPotion.getWidth()/12;
+        //speedPotion.scale(newWidth, newHeight);
+        speedPotion.scale(50, 50);
     }
     
     /**
