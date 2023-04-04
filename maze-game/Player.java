@@ -41,44 +41,27 @@ public class Player extends Actor
         String dir = "none";
 
         //check if speed potion has been activated - if it has, player moves twice as fast
+        int speed = 2;
         if (activateSpeedPotion == true)
         {
-            if (Greenfoot.isKeyDown("up"))
-            {
-                dy = -4;
-            }
-            if (Greenfoot.isKeyDown("left"))
-            {
-                dx = -4;
-            }
-            if (Greenfoot.isKeyDown("down"))
-            {
-                dy = 4;
-            }
-            if (Greenfoot.isKeyDown("right"))
-            {
-                dx = 4;
-            }
+            speed = 4;
         }
-        // else, speed potion is not being used, so player moves normal speed
-        else
+        // if speed potion active their speed is 4 if not its the default of 2
+        if (Greenfoot.isKeyDown("up"))
         {
-            if (Greenfoot.isKeyDown("up"))
-            {
-                dy = -2;
-            }
-            if (Greenfoot.isKeyDown("left"))
-            {
-                dx = -2;
-            }
-            if (Greenfoot.isKeyDown("down"))
-            {
-                dy = 2;
-            }
-            if (Greenfoot.isKeyDown("right"))
-            {
-                dx = 2;
-            }
+            dy = -speed;
+        }
+        if (Greenfoot.isKeyDown("left"))
+        {
+            dx = -speed;
+        }
+        if (Greenfoot.isKeyDown("down"))
+        {
+            dy = speed;
+        }
+        if (Greenfoot.isKeyDown("right"))
+        {
+            dx = speed;
         }
 
         if(Greenfoot.isKeyDown("1") == true)
@@ -336,7 +319,7 @@ public class Player extends Actor
         world.removeObject(SpeedPotion);
         
         SpeedPotion_option_1 speed = new SpeedPotion_option_1();
-        world.addObject(speed,450,900);
+        world.addObject(speed,150,900);
     }
 
     /**
