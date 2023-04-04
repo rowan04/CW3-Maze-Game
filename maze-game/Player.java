@@ -261,6 +261,7 @@ public class Player extends Actor
      */
     private void collectWallBreaker()
     {
+        MyWorld.score += 10;
         hasWallBreaker = true;
         Actor WallBreaker;
         WallBreaker = getOneObjectAtOffset(0, 0, WallBreaker.class);
@@ -277,6 +278,7 @@ public class Player extends Actor
      */
     private void teleport()
     {
+        hasTeleport = false;
         getWorld().removeObjects(getWorld().getObjects(Tele_option_3.class));
         Greenfoot.playSound("teleport.mp3");
         setLocation(15, 30);
