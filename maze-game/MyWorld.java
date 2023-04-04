@@ -305,27 +305,35 @@ public class MyWorld extends World
         List<Integer> ex_list = new ArrayList<Integer>();
         Integer[] ex = null;
         // ex must have different numbers
+        
         Random rnd = new Random();
-
+        int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
         ex_list.add(spawn_breaker);
+        
         Collections.sort(ex_list);
         ex = ex_list.toArray(new Integer[ex_list.size()]);
         int spawn_time = getRandomWithExclusion(rnd, 1, 12, ex);
-        
         ex = null;
         ex_list.add(spawn_time);
+
+        Collections.sort(ex_list);
+        ex = ex_list.toArray(new Integer[ex_list.size()]);
+        int spawn_speed = getRandomWithExclusion(rnd, 1, 12, ex);
+        ex = null;
+        ex_list.add(spawn_speed);
+
         Collections.sort(ex_list);
         ex = ex_list.toArray(new Integer[ex_list.size()]);
         int spawn_tele = getRandomWithExclusion(rnd, 1, 12, ex);
         
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
-        
+        int[] result3 = decodeNumber(spawn_speed);
         int[] result4 = decodeNumber(spawn_tele);
         
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);
-        
+        addObject(new SpeedPotion(), result3[0], result3[1]);
         addObject(new Teleport(), result4[0], result4[1]);
 
     }
