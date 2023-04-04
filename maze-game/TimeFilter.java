@@ -29,7 +29,7 @@ public class TimeFilter extends Actor
             //stop
         }
             
-        if(timer>500)
+        if(timer>300)
         {
             MyWorld.stop = false;
             
