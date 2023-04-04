@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+
 /**
  * Creates the world the greenfoot program runs in
- * 
  */
 public class MyWorld extends World
 {
@@ -44,7 +44,7 @@ public class MyWorld extends World
             addPlayer();
             prepareMaze();
 
-            // ensure time freeze, player having/using speed potion and player having the wallBreaker are set to false, this was an issue after resets
+            // ensure time freeze, teleport, player having/using speed potion and player having the wallBreaker are set to false, this was an issue after resets
             Player.hasWallBreaker = false;
             Player.freeze = false;
             Player.hasTeleport = false;
@@ -82,9 +82,11 @@ public class MyWorld extends World
             }
         }
     }
-    
-    //loops background music
-    private void playMusic()                //mot in use
+
+    /**
+     * loops background music
+     */
+    private void playMusic()                //not in use
     {
         List<Integer> numbers = Arrays.asList(0, 1, 2, 3);
         Collections.shuffle(numbers);
@@ -190,8 +192,10 @@ public class MyWorld extends World
         addObject(Ghost4, x, y);
         Ghost4.turn(Greenfoot.getRandomNumber(360));
     }
-    
-    // adds coordinate decoding for random numbers
+
+    /**
+     * adds coordinate decoding for random numbers
+     */
     private int[] decodeNumber(int spawn_point)
     {
         int[] result = new int[2];
@@ -270,7 +274,9 @@ public class MyWorld extends World
         return(result);
     }
 
-    // random number generator that excludes numbers, so items can't spawn in the same place
+    /**
+     * random number generator that excludes numbers, so items can't spawn in the same place
+     */
     public int getRandomWithExclusion(Random rnd, int start, int end, Integer[] exclude)
     {
         if (exclude == null)
@@ -297,11 +303,11 @@ public class MyWorld extends World
     }
 
     /**
-     * add the items
+     * the items will each spawn at one of the selected spawn points, at random
+     * they can't spawn at the same spawn point as another item
      */
     private void addItems()
     {
-        // the wall breaker will spawn at one of the selected spawn points, at random
         List<Integer> ex_list = new ArrayList<Integer>();
         Integer[] ex = null;
         // ex must have different numbers
@@ -353,7 +359,10 @@ public class MyWorld extends World
         create_walls();
         
     }
-    
+
+    /**
+     * adds the timer
+     */
     private void showTimer(int timer)
     {
         // divide timer by 60, to turn it into seconds

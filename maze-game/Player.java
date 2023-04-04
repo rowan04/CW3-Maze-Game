@@ -1,8 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.*;  //allows checking signs on integers
+
 /**
  * This is the main player that the user will control.
- * 
  */
 public class Player extends Actor
 {
@@ -88,8 +88,17 @@ public class Player extends Actor
                 timeFrozen();
             }
         }
-        
-        
+
+        if(Greenfoot.isKeyDown("2") == true)
+        {
+            if(hasSpeedPotion == true)
+            {
+                useSpeedPotion = true;
+                // speed potion has been used, so no longer has a speed potion
+                hasSpeedPotion = false;
+            }
+        }
+
         if(Greenfoot.isKeyDown("3") == true)
         {
             if(hasTeleport == true)
@@ -98,20 +107,9 @@ public class Player extends Actor
             }
         }
 
-        if(Greenfoot.isKeyDown("2") == true)
-        {
-            //useSpeedPotion = true;
-            if(hasSpeedPotion == true)
-            {
-                useSpeedPotion = true;
-                // speed potion has been used, so no longer has a speed potion
-                hasSpeedPotion = false;
-            }
-        }
-        
         if (useSpeedPotion == true)
         {
-            useSpeedPotion(speedTimer);
+            useSpeedPotion();
         }
 
         setLocation(getX()+dx, getY()+dy);
@@ -245,6 +243,9 @@ public class Player extends Actor
         }
     }
 
+    /**
+     * time freeze functionality
+     */
     private void timeFrozen()
     {
         getWorld().removeObjects(getWorld().getObjects(Time_option_1.class));
@@ -270,15 +271,19 @@ public class Player extends Actor
         Breaker_icon breaker = new Breaker_icon();
         world.addObject(breaker,1100,900);
     }
-    
+
+    /**
+     * teleport functionality
+     */
     private void teleport()
     {
         getWorld().removeObjects(getWorld().getObjects(Tele_option_3.class));
         Greenfoot.playSound("teleport.mp3");
         setLocation(15, 30);
     }
+
     /**
-     * if player is touching teleport item, collect it, then delete the teleport item on thte maze
+     * if player is touching teleport item, collect it, then delete the teleport item on the maze
      */
     private void collectTeleporter()
     {
@@ -316,21 +321,22 @@ public class Player extends Actor
     {
         hasSpeedPotion = true;
         Actor SpeedPotion;
-        SpeedPotion = getOneObjectAtOffset(0, 0, SpeedPotion.class);
+        SpeedPotion = getOneIntersectingObject(SpeedPotion.class);
         MyWorld.score += 10;
         World world;
         world = getWorld();
         world.removeObject(SpeedPotion);
         
-        //Breaker_icon breaker = new Breaker_icon();
-        //world.addObject(breaker,1100,900);
+        SpeedPotion_option_1 speed = new SpeedPotion_option_1();
+        world.addObject(speed,450,900);
     }
 
     /**
      * what happens when speedPotion is used
      */
-    private void useSpeedPotion(int speedTimer)
+    private void useSpeedPotion()
     {
+        getWorld().removeObjects(getWorld().getObjects(SpeedPotion_option_1.class));
         if (speedTimer > 0)
         {
             activateSpeedPotion = true;
