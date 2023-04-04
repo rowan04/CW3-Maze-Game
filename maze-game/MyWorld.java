@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+
 /**
  * Creates the world the greenfoot program runs in
- * 
  */
 public class MyWorld extends World
 {
@@ -44,25 +44,30 @@ public class MyWorld extends World
             addPlayer();
             prepareMaze();
 
-            // ensure time freeze and player having the wallBreaker are set to false, this was an issue after resets
+            // ensure time freeze, teleport, player having/using speed potion and player having the wallBreaker are set to false, this was an issue after resets
             Player.hasWallBreaker = false;
             Player.freeze = false;
             Player.hasTeleport = false;
             stop = false;
+            Player.hasWallBreaker = false;
+            Player.hasSpeedPotion = false;
+            Player.useSpeedPotion = false;
+            Player.activateSpeedPotion = false;
 
             // add ghosts (after maze, so they show over the walls)
             addGhost1();
             addGhost2();
             addGhost3();
             addGhost4();
-            
-            // add wall breaker
+
+            // add in items
             addItems();
-            
-            
+
             // start the timer, setting it to 0
             timer = 0;
             startTimer = true;
+
+            // play music
             music.playLoop();
         }
         showText("score: " + score, 725, 875);
@@ -77,9 +82,11 @@ public class MyWorld extends World
             }
         }
     }
-    
-    //loops background music
-    private void playMusic()                //mot in use
+
+    /**
+     * loops background music
+     */
+    private void playMusic()                //not in use
     {
         List<Integer> numbers = Arrays.asList(0, 1, 2, 3);
         Collections.shuffle(numbers);
@@ -185,8 +192,10 @@ public class MyWorld extends World
         addObject(Ghost4, x, y);
         Ghost4.turn(Greenfoot.getRandomNumber(360));
     }
-    
-    // adds coordinate decoding for random numbers
+
+    /**
+     * adds coordinate decoding for random numbers
+     */
     private int[] decodeNumber(int spawn_point)
     {
         int[] result = new int[2];
@@ -264,8 +273,11 @@ public class MyWorld extends World
         }
         return(result);
     }
-    // random number generator that excludes numbers, so items can't spawn in the same place
-    public int getRandomWithExclusion(Random rnd, int start, int end, Integer[] exclude) 
+
+    /**
+     * random number generator that excludes numbers, so items can't spawn in the same place
+     */
+    public int getRandomWithExclusion(Random rnd, int start, int end, Integer[] exclude)
     {
         if (exclude == null)
         {
@@ -289,39 +301,45 @@ public class MyWorld extends World
             return random;
         }
     }
-    
-    
+
     /**
-     * add the items
+     * the items will each spawn at one of the selected spawn points, at random
+     * they can't spawn at the same spawn point as another item
      */
     private void addItems()
     {
-        // the wall breaker will spawn at one of the selected spawn points, at random
         List<Integer> ex_list = new ArrayList<Integer>();
         Integer[] ex = null;
         // ex must have different numbers
+        
         Random rnd = new Random();
         int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
-        
         ex_list.add(spawn_breaker);
+        
         Collections.sort(ex_list);
         ex = ex_list.toArray(new Integer[ex_list.size()]);
         int spawn_time = getRandomWithExclusion(rnd, 1, 12, ex);
-        
         ex = null;
         ex_list.add(spawn_time);
+
+        Collections.sort(ex_list);
+        ex = ex_list.toArray(new Integer[ex_list.size()]);
+        int spawn_speed = getRandomWithExclusion(rnd, 1, 12, ex);
+        ex = null;
+        ex_list.add(spawn_speed);
+
         Collections.sort(ex_list);
         ex = ex_list.toArray(new Integer[ex_list.size()]);
         int spawn_tele = getRandomWithExclusion(rnd, 1, 12, ex);
         
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
-        
+        int[] result3 = decodeNumber(spawn_speed);
         int[] result4 = decodeNumber(spawn_tele);
         
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);
-        
+        addObject(new SpeedPotion(), result3[0], result3[1]);
         addObject(new Teleport(), result4[0], result4[1]);
 
     }
@@ -341,7 +359,10 @@ public class MyWorld extends World
         create_walls();
         
     }
-    
+
+    /**
+     * adds the timer
+     */
     private void showTimer(int timer)
     {
         // divide timer by 60, to turn it into seconds
