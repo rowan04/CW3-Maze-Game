@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 /**
  * Creates the world the greenfoot program runs in
@@ -12,6 +13,7 @@ public class MyWorld extends World
     public static boolean stop = false;
     private int timer;
     public static int secondsTimer;
+    public static int score;
     public static boolean startTimer;
     public GreenfootSound music = new GreenfootSound("music1.mp3");
     /**
@@ -35,12 +37,17 @@ public class MyWorld extends World
     {
         if (Greenfoot.getKey() == "enter")
         {
+            score = 0;
+            stop = false;
             removeObjects(getObjects(null));
             setPaintOrder(Player.class);
             addPlayer();
             prepareMaze();
 
             // ensure time freeze, player having/using speed potion and player having the wallBreaker are set to false, this was an issue after resets
+            Player.hasWallBreaker = false;
+            Player.freeze = false;
+            Player.hasTeleport = false;
             stop = false;
             Player.hasWallBreaker = false;
             Player.hasSpeedPotion = false;
@@ -63,6 +70,7 @@ public class MyWorld extends World
             // play music
             music.playLoop();
         }
+        showText("score: " + score, 725, 875);
         
         // display timer if startTimer is true and stop is false
         if (startTimer == true)
@@ -76,7 +84,7 @@ public class MyWorld extends World
     }
     
     //loops background music
-    private void playMusic()
+    private void playMusic()                //mot in use
     {
         List<Integer> numbers = Arrays.asList(0, 1, 2, 3);
         Collections.shuffle(numbers);
@@ -262,47 +270,64 @@ public class MyWorld extends World
         return(result);
     }
 
-    /**
-     * random number generator that excludes numbers, so items can't spawn in the same place
-     */
-    public int getRandomWithExclusion(Random rnd, int start, int end, int[] exclude) 
+    // random number generator that excludes numbers, so items can't spawn in the same place
+    public int getRandomWithExclusion(Random rnd, int start, int end, Integer[] exclude)
     {
-        int random = start + rnd.nextInt(end - start + 1 - exclude.length);
-        for (int ex : exclude) {
-            if (random < ex) {
-                break;
+        if (exclude == null)
+        {
+            int random = 0;
+            while (true)
+            {
+                random = rnd.nextInt(13);
+                if(random !=0) break;
             }
-            random++;
+            return random;
         }
-        return random;
+        else
+        {
+            int random = start + rnd.nextInt(end - start + 1 - exclude.length);
+            for (int ex : exclude) {
+                if (random < ex) {
+                    break;
+                }
+                random++;
+            }
+            return random;
+        }
     }
 
     /**
-     * adds the items (speed potion, wall breaker, time freeze)
+     * add the items
      */
     private void addItems()
     {
-        // the items all need to spawn at a different spawn point, which are picked at random
-        int[] ex = new int[2];
+        // the wall breaker will spawn at one of the selected spawn points, at random
+        List<Integer> ex_list = new ArrayList<Integer>();
+        Integer[] ex = null;
         // ex must have different numbers
         Random rnd = new Random();
-        
-        int spawn_breaker = getRandomWithExclusion(rnd, 1, 12, ex);
-        ex[0] = spawn_breaker;
 
+        ex_list.add(spawn_breaker);
+        Collections.sort(ex_list);
+        ex = ex_list.toArray(new Integer[ex_list.size()]);
         int spawn_time = getRandomWithExclusion(rnd, 1, 12, ex);
-        ex[1] = spawn_time;
-
-        int spawn_speed = getRandomWithExclusion(rnd, 1, 12, ex);
-
+        
+        ex = null;
+        ex_list.add(spawn_time);
+        Collections.sort(ex_list);
+        ex = ex_list.toArray(new Integer[ex_list.size()]);
+        int spawn_tele = getRandomWithExclusion(rnd, 1, 12, ex);
+        
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
-        int[] result3 = decodeNumber(spawn_speed);
-
-        // add the objects
+        
+        int[] result4 = decodeNumber(spawn_tele);
+        
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);
-        addObject(new SpeedPotion(), result3[0], result3[1]);
+        
+        addObject(new Teleport(), result4[0], result4[1]);
+
     }
     
     /**
