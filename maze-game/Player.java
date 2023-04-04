@@ -9,7 +9,7 @@ public class Player extends Actor
     public static boolean hasWallBreaker = false;
     public static boolean freeze = false;
     public static boolean hasTeleport = false;
-    
+    private MyWorld myworld;
     // to clear confusion:
     // - hasSpeedPotion is true when the player picks up the speed potion
     // - useSpeedPotion is true when the player presses 2, regardless of whether they have a speed potion or not
@@ -241,6 +241,12 @@ public class Player extends Actor
         {
             touchingBreakable(hasWallBreaker, dx, dy);
         }
+        
+        //if touching the send to puzzel room 1 actor they are sent to that room
+        if (isTouching(Puzzel_world_1_tp.class))
+        {
+            //teleport to other world (save current world and when going back make sure player doesn't get caught in a teleport loop between the 2 worlds)
+        }
     }
 
     /**
@@ -264,7 +270,7 @@ public class Player extends Actor
         MyWorld.score += 10;
         hasWallBreaker = true;
         Actor WallBreaker;
-        WallBreaker = getOneObjectAtOffset(0, 0, WallBreaker.class);
+        WallBreaker = getOneIntersectingObject(WallBreaker.class);
         World world;
         world = getWorld();
         world.removeObject(WallBreaker);
