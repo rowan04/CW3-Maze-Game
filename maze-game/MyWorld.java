@@ -376,290 +376,566 @@ public class MyWorld extends World
     }
     
     /**
-     * create the walls
+     * creates the walls of the maze
+     * creates the breakable walls surrounding the exit
+     * includes the bottom border seperating the inventory from the maze
      */
     private void create_walls()
     {
-        //discance from 2 midpoint = 50
-        //distance from wall = 25
-        //when using walls 2 and 3 must be 1 less on x axis ending with 5 idk why
-        
-        Wall2 wall = new Wall2();
-        addObject(wall,124,100);
-        wall.setRotation(90);
-        
-        Wall3 wall2 = new Wall3();
-        addObject(wall2,74,175);
-        wall2.setRotation(90);
-        
-        Wall2 wall3 = new Wall2();
-        addObject(wall3,149,225);
-        
-        Wall3 wall4 = new Wall3();
-        addObject(wall4,275,25);
-        
-        Wall3 wall5 = new Wall3();
-        addObject(wall5,275,125);
-        
-        Wall3 wall6 = new Wall3();
-        addObject(wall6,225,325);
-        
-        Wall3 wall7 = new Wall3();
-        addObject(wall7,274,225);
-        wall7.setRotation(90);
-        
-        Wall1 wall8 = new Wall1();
-        addObject(wall8,175,375);
-        
-        Wall2 wall9 = new Wall2();
-        addObject(wall9,50,325);
-        
-        Wall3 wall10 = new Wall3();
-        addObject(wall10,74,425);
-        wall10.setRotation(90);
-        
-        Wall2 wall11 = new Wall2();
-        addObject(wall11,150,475);
-        
-        Wall3 wall12 = new Wall3();
-        addObject(wall12,125,575);
-        
-        Wall3 wall13 = new Wall3();
-        addObject(wall13,174,675);
-        wall13.setRotation(90);
-        
-        Wall2 wall14 = new Wall2();
-        addObject(wall14,100,725);
-        
-        Wall2 wall15 = new Wall2();
-        addObject(wall15,250,725);
-        
-        Wall1 wall16 = new Wall1();
-        addObject(wall16,75,675);
-        
-        Wall1 wall17 = new Wall1();
-        addObject(wall17,175,775);
-        
-        Wall3 wall18 = new Wall3();
-        addObject(wall18,424,125);
-        wall18.setRotation(90);
-        
-        Wall2 wall19 = new Wall2();
-        addObject(wall19,400,225);
-        
-        Wall3 wall20 = new Wall3();
-        addObject(wall20,274,575);
-        wall20.setRotation(90);
-        
-        Wall1 wall21 = new Wall1();
-        addObject(wall21,325,625);
-        
-        Wall2 wall22 = new Wall2();
-        addObject(wall22,400,725);
-        
-        Wall3 wall23 = new Wall3();
-        addObject(wall23,424,625);
-        wall23.setRotation(90);
-        
-        Wall2 wall24 = new Wall2();
-        addObject(wall24,400,525);
-        
-        Wall2 wall25 = new Wall2();
-        addObject(wall25,374,450);
-        wall25.setRotation(90);
-        
-        Wall2 wall26 = new Wall2();
-        addObject(wall26,300,425);
-        
-        Wall3 wall27 = new Wall3();
-        addObject(wall27,525,625);
-        
-        Wall2 wall28 = new Wall2();
-        addObject(wall28,524,750);
-        wall28.setRotation(90);
-        
-        Wall3 wall29 = new Wall3();
-        addObject(wall29,425,325);
-        
-        Wall2 wall30 = new Wall2();
-        addObject(wall30,524,300);
-        wall30.setRotation(90);
-        
-        Wall2 wall31 = new Wall2();
-        addObject(wall31,600,275);
-        
-        Wall3 wall32 = new Wall3();
-        addObject(wall32,624,375);
-        wall32.setRotation(90);
-        
-        Wall2 wall33 = new Wall2();
-        addObject(wall33,500,425);
-        
-        Wall2 wall34 = new Wall2();
-        addObject(wall34,550,525);
-        
-        Wall1 wall35 = new Wall1();
-        addObject(wall35,525,475);
-        
-        Wall3 wall36 = new Wall3();
-        addObject(wall36,524,125);
-        wall36.setRotation(90);
-        
-        Wall2 wall37 = new Wall2();
-        addObject(wall37,600,175);
-        
-        Wall1 wall38 = new Wall1();
-        addObject(wall38,625,125);
-        
-        Wall3 wall39 = new Wall3();
-        addObject(wall39,675,25);
-        
-        Wall2 wall40 = new Wall2();
-        addObject(wall40,624,750);
-        wall40.setRotation(90);
-        
-        Wall2 wall41 = new Wall2();
-        addObject(wall41,700,725);
-        
-        Wall2 wall42 = new Wall2();
-        addObject(wall42,674,650);
-        wall42.setRotation(90);
-        
-        Wall2 wall43 = new Wall2();
-        addObject(wall43,750,125);
-        
-        Wall2 wall44 = new Wall2();
-        addObject(wall44,900,125);
-        
-        Wall1 wall45 = new Wall1();
-        addObject(wall45,725,175);
-        
-        Wall3 wall46 = new Wall3();
-        addObject(wall46,824,125);
-        wall46.setRotation(90);
-        
-        Wall3 wall47 = new Wall3();
-        addObject(wall47,874,275);
-        wall47.setRotation(90);
-        
-        Wall3 wall48 = new Wall3();
-        addObject(wall48,974,375);
-        wall48.setRotation(90);
-        
-        Wall1 wall49 = new Wall1();
-        addObject(wall49,825,225);
-        
-        Wall1 wall50 = new Wall1();
-        addObject(wall50,925,325);
-        
-        Wall3 wall51 = new Wall3();
-        addObject(wall51,1075,25);
-        
-        Wall3 wall52 = new Wall3();
-        addObject(wall52,1025,225);
-        
-        Wall3 wall53 = new Wall3();
-        addObject(wall53,1024,125);
-        wall53.setRotation(90);
-        
-        Wall2 wall54 = new Wall2();
-        addObject(wall54,950,25);
-        
-        Wall1 wall55 = new Wall1();
-        addObject(wall55,1125,125);
-        
-        Wall2 wall56 = new Wall2();
-        addObject(wall56,1100,325);
-        
-        Wall2 wall57 = new Wall2();
-        addObject(wall57,750,325);
-        
-        Wall1 wall58 = new Wall1();
-        addObject(wall58,725,275);
-        
-        Wall2 wall59 = new Wall2();
-        addObject(wall59,824,750);
-        wall59.setRotation(90);
-        
-        Wall3 wall60 = new Wall3();
-        addObject(wall60,1074,475);
-        wall60.setRotation(90);
-        
-        Wall2 wall61 = new Wall2();
-        addObject(wall61,1124,550);
-        wall61.setRotation(90);
-        
+        // placing the breakable walls that surround the exit
+
         Breakable break1 = new Breakable();
         addObject(break1,1125,675);
-        
+
         Breakable break2 = new Breakable();
         addObject(break2,1075,675);
-        
+
         Breakable break3 = new Breakable();
         addObject(break3,1025,725);
-        
+
         Breakable break4 = new Breakable();
         addObject(break4,1025,775);
+
+        // creating the walls that make the maze
+        // each wall is 50x50 pixels
+
+        Wall1 wall = new Wall1();
+        addObject(wall,125,75);
+
+        Wall1 wall2 = new Wall1();
+        addObject(wall2,75,125);
+
+        Wall1 wall3 = new Wall1();
+        addObject(wall3,75,175);
         
-        Wall2 wall62 = new Wall2();
-        addObject(wall62,1024,650);
-        wall62.setRotation(90);
+        Wall1 wall4 = new Wall1();
+        addObject(wall4,75,225);
         
-        Wall3 wall63 = new Wall3();
-        addObject(wall63,924,675);
-        wall63.setRotation(90);
+        Wall1 wall5 = new Wall1();
+        addObject(wall5,125,125);
+        
+        Wall1 wall6 = new Wall1();
+        addObject(wall6,125,225);
+        
+        Wall1 wall7 = new Wall1();
+        addObject(wall7,175,225);
+        
+        Wall1 wall8 = new Wall1();
+        addObject(wall8,225,25);
+        
+        Wall1 wall9 = new Wall1();
+        addObject(wall9,275,25);
+        
+        Wall1 wall10 = new Wall1();
+        addObject(wall10,325,25);
+        
+        Wall1 wall11 = new Wall1();
+        addObject(wall11,225,125);
+        
+        Wall1 wall12 = new Wall1();
+        addObject(wall12,275,125);
+        
+        Wall1 wall13 = new Wall1();
+        addObject(wall13,325,125);
+        
+        Wall1 wall14 = new Wall1();
+        addObject(wall14,275,175);
+        
+        Wall1 wall15 = new Wall1();
+        addObject(wall15,275,225);
+        
+        Wall1 wall16 = new Wall1();
+        addObject(wall16,275,275);
+        
+        Wall1 wall17 = new Wall1();
+        addObject(wall17,275,325);
+        
+        Wall1 wall18 = new Wall1();
+        addObject(wall18,25,325);
+        
+        Wall1 wall19 = new Wall1();
+        addObject(wall19,75,325);
+        
+        Wall1 wall20 = new Wall1();
+        addObject(wall20,175,325);
+        
+        Wall1 wall21 = new Wall1();
+        addObject(wall21,225,325);
+        
+        Wall1 wall22 = new Wall1();
+        addObject(wall22,75,375);
+        
+        Wall1 wall23 = new Wall1();
+        addObject(wall23,75,425);
+        
+        Wall1 wall24 = new Wall1();
+        addObject(wall24,75,475);
+        
+        Wall1 wall25 = new Wall1();
+        addObject(wall25,125,475);
+        
+        Wall1 wall26 = new Wall1();
+        addObject(wall26,175,475);
+        
+        Wall1 wall27 = new Wall1();
+        addObject(wall27,175,375);
+        
+        Wall1 wall28 = new Wall1();
+        addObject(wall28,425,75);
+        
+        Wall1 wall29 = new Wall1();
+        addObject(wall29,425,125);
+        
+        Wall1 wall30 = new Wall1();
+        addObject(wall30,425,175);
+        
+        Wall1 wall31 = new Wall1();
+        addObject(wall31,425,225);
+        
+        Wall1 wall32 = new Wall1();
+        addObject(wall32,375,225);
+        
+        Wall1 wall33 = new Wall1();
+        addObject(wall33,375,325);
+        
+        Wall1 wall34 = new Wall1();
+        addObject(wall34,425,325);
+        
+        Wall1 wall35 = new Wall1();
+        addObject(wall35,475,325);
+        
+        Wall1 wall36 = new Wall1();
+        addObject(wall36,525,75);
+        
+        Wall1 wall37 = new Wall1();
+        addObject(wall37,525,125);
+        
+        Wall1 wall38 = new Wall1();
+        addObject(wall38,525,175);
+        
+        Wall1 wall39 = new Wall1();
+        addObject(wall39,525,275);
+        
+        Wall1 wall40 = new Wall1();
+        addObject(wall40,525,325);
+        
+        Wall1 wall41 = new Wall1();
+        addObject(wall41,575,175);
+        
+        Wall1 wall42 = new Wall1();
+        addObject(wall42,625,125);
+        
+        Wall1 wall43 = new Wall1();
+        addObject(wall43,625,175);
+        
+        Wall1 wall44 = new Wall1();
+        addObject(wall44,575,275);
+        
+        Wall1 wall45 = new Wall1();
+        addObject(wall45,625,275);
+        
+        Wall1 wall46 = new Wall1();
+        addObject(wall46,625,325);
+        
+        Wall1 wall47 = new Wall1();
+        addObject(wall47,625,375);
+        
+        Wall1 wall48 = new Wall1();
+        addObject(wall48,625,425);
+        
+        Wall1 wall49 = new Wall1();
+        addObject(wall49,625,25);
+        
+        Wall1 wall50 = new Wall1();
+        addObject(wall50,675,25);
+        
+        Wall1 wall51 = new Wall1();
+        addObject(wall51,725,25);
+        
+        Wall1 wall52 = new Wall1();
+        addObject(wall52,275,425);
+        
+        Wall1 wall53 = new Wall1();
+        addObject(wall53,325,425);
+        
+        Wall1 wall54 = new Wall1();
+        addObject(wall54,375,425);
+        
+        Wall1 wall55 = new Wall1();
+        addObject(wall55,475,425);
+        
+        Wall1 wall56 = new Wall1();
+        addObject(wall56,525,425);
+        
+        Wall1 wall57 = new Wall1();
+        addObject(wall57,375,475);
+        
+        Wall1 wall58 = new Wall1();
+        addObject(wall58,525,475);
+        
+        Wall1 wall59 = new Wall1();
+        addObject(wall59,725,275);
+        
+        Wall1 wall60 = new Wall1();
+        addObject(wall60,725,325);
+        
+        Wall1 wall61 = new Wall1();
+        addObject(wall61,775,325);
+        
+        Wall1 wall62 = new Wall1();
+        addObject(wall62,725,125);
+        
+        Wall1 wall63 = new Wall1();
+        addObject(wall63,725,175);
         
         Wall1 wall64 = new Wall1();
-        addObject(wall64,975,675);
+        addObject(wall64,775,125);
         
-        Wall3 wall65 = new Wall3();
-        addObject(wall65,725,525);
+        Wall1 wall65 = new Wall1();
+        addObject(wall65,825,75);
         
-        Wall3 wall66 = new Wall3();
-        addObject(wall66,925,525);
+        Wall1 wall66 = new Wall1();
+        addObject(wall66,825,125);
         
         Wall1 wall67 = new Wall1();
-        addObject(wall67,825,525);
+        addObject(wall67,825,175);
         
-        Wall2 wall68 = new Wall2();
-        addObject(wall68,750,425);
+        Wall1 wall68 = new Wall1();
+        addObject(wall68,825,225);
         
-        Wall2 wall69 = new Wall2();
-        addObject(wall69,800,625);
+        Wall1 wall69 = new Wall1();
+        addObject(wall69,875,125);
         
-        Wall2 wall70 = new Wall2();
-        addObject(wall70,874,450);
-        wall70.setRotation(90);
+        Wall1 wall70 = new Wall1();
+        addObject(wall70,875,225);
         
         Wall1 wall71 = new Wall1();
-        addObject(wall71,725,475);
+        addObject(wall71,875,275);
         
         Wall1 wall72 = new Wall1();
-        addObject(wall72,775,575);
+        addObject(wall72,875,325);
         
-        Wall3 wall73 = new Wall3();
-        addObject(wall73,75,825);
+        // the following walls form the bottom border
+
+        Wall1 wall73 = new Wall1();
+        addObject(wall73,25,825);
         
-        Wall3 wall74 = new Wall3();
-        addObject(wall74,225,825);
+        Wall1 wall74 = new Wall1();
+        addObject(wall74,75,825);
         
-        Wall3 wall75 = new Wall3();
-        addObject(wall75,375,825);
+        Wall1 wall75 = new Wall1();
+        addObject(wall75,125,825);
         
-        Wall3 wall76 = new Wall3();
-        addObject(wall76,525,825);
+        Wall1 wall76 = new Wall1();
+        addObject(wall76,175,825);
         
-        Wall3 wall77 = new Wall3();
-        addObject(wall77,675,825);
+        Wall1 wall77 = new Wall1();
+        addObject(wall77,225,825);
         
-        Wall3 wall78 = new Wall3();
-        addObject(wall78,825,825);
+        Wall1 wall78 = new Wall1();
+        addObject(wall78,275,825);
         
-        Wall3 wall79 = new Wall3();
-        addObject(wall79,975,825);
+        Wall1 wall79 = new Wall1();
+        addObject(wall79,325,825);
         
-        Wall2 wall80 = new Wall2();
-        addObject(wall80,1100,825);
+        Wall1 wall80 = new Wall1();
+        addObject(wall80,375,825);
+        
+        Wall1 wall81 = new Wall1();
+        addObject(wall81,425,825);
+        
+        Wall1 wall82 = new Wall1();
+        addObject(wall82,475,825);
+        
+        Wall1 wall83 = new Wall1();
+        addObject(wall83,525,825);
+
+        Wall1 wall84 = new Wall1();
+        addObject(wall84,575,825);
+        
+        Wall1 wall85 = new Wall1();
+        addObject(wall85,625,825);
+        
+        Wall1 wall86 = new Wall1();
+        addObject(wall86,675,825);
+        
+        Wall1 wall87 = new Wall1();
+        addObject(wall87,725,825);
+        
+        Wall1 wall88 = new Wall1();
+        addObject(wall88,775,825);
+        
+        Wall1 wall89 = new Wall1();
+        addObject(wall89,825,825);
+        
+        Wall1 wall90 = new Wall1();
+        addObject(wall90,875,825);
+        
+        Wall1 wall91 = new Wall1();
+        addObject(wall91,925,825);
+        
+        Wall1 wall92 = new Wall1();
+        addObject(wall92,975,825);
+        
+        Wall1 wall93 = new Wall1();
+        addObject(wall93,1025,825);
+        
+        Wall1 wall94 = new Wall1();
+        addObject(wall94,1075,825);
+        
+        Wall1 wall95 = new Wall1();
+        addObject(wall95,1125,825);
+        
+        // the following walls no longer form the bottom border again
+
+        Wall1 wall96 = new Wall1();
+        addObject(wall96,925,25);
+        
+        Wall1 wall97 = new Wall1();
+        addObject(wall97,925,125);
+        
+        Wall1 wall98 = new Wall1();
+        addObject(wall98,925,325);
+        
+        Wall1 wall99 = new Wall1();
+        addObject(wall99,975,25);
+        
+        Wall1 wall100 = new Wall1();
+        addObject(wall100,1025,25);
+        
+        Wall1 wall101 = new Wall1();
+        addObject(wall101,1075,25);
+        
+        Wall1 wall102 = new Wall1();
+        addObject(wall102,1125,25);
+        
+        Wall1 wall103 = new Wall1();
+        addObject(wall103,1025,75);
+        
+        Wall1 wall104 = new Wall1();
+        addObject(wall104,1025,125);
+        
+        Wall1 wall105 = new Wall1();
+        addObject(wall105,1025,175);
+        
+        Wall1 wall106 = new Wall1();
+        addObject(wall106,975,225);
+        
+        Wall1 wall107 = new Wall1();
+        addObject(wall107,1025,225);
+        
+        Wall1 wall108 = new Wall1();
+        addObject(wall108,1075,225);
+        
+        Wall1 wall109 = new Wall1();
+        addObject(wall109,1125,125);
+        
+        Wall1 wall110 = new Wall1();
+        addObject(wall110,975,325);
+        
+        Wall1 wall111 = new Wall1();
+        addObject(wall111,975,375);
+        
+        Wall1 wall112 = new Wall1();
+        addObject(wall112,975,425);
+        
+        Wall1 wall113 = new Wall1();
+        addObject(wall113,1075,325);
+        
+        Wall1 wall114 = new Wall1();
+        addObject(wall114,1125,325);
+        
+        Wall1 wall115 = new Wall1();
+        addObject(wall115,725,425);
+        
+        Wall1 wall116 = new Wall1();
+        addObject(wall116,775,425);
+        
+        Wall1 wall117 = new Wall1();
+        addObject(wall117,725,475);
+        
+        Wall1 wall118 = new Wall1();
+        addObject(wall118,875,425);
+        
+        Wall1 wall119 = new Wall1();
+        addObject(wall119,875,475);
+        
+        Wall1 wall120 = new Wall1();
+        addObject(wall120,1075,425);
+        
+        Wall1 wall121 = new Wall1();
+        addObject(wall121,1075,475);
+        
+        Wall1 wall122 = new Wall1();
+        addObject(wall122,75,575);
+        
+        Wall1 wall123 = new Wall1();
+        addObject(wall123,125,575);
+        
+        Wall1 wall124 = new Wall1();
+        addObject(wall124,175,575);
+        
+        Wall1 wall125 = new Wall1();
+        addObject(wall125,175,625);
+        
+        Wall1 wall126 = new Wall1();
+        addObject(wall126,175,675);
+        
+        Wall1 wall127 = new Wall1();
+        addObject(wall127,175,725);
+        
+        Wall1 wall128 = new Wall1();
+        addObject(wall128,175,775);
+        
+        Wall1 wall129 = new Wall1();
+        addObject(wall129,75,675);
+        
+        Wall1 wall130 = new Wall1();
+        addObject(wall130,75,725);
+        
+        Wall1 wall131 = new Wall1();
+        addObject(wall131,125,725);
+        
+        Wall1 wall132 = new Wall1();
+        addObject(wall132,225,725);
+        
+        Wall1 wall133 = new Wall1();
+        addObject(wall133,275,725);
+        
+        Wall1 wall134 = new Wall1();
+        addObject(wall134,275,525);
+        
+        Wall1 wall135 = new Wall1();
+        addObject(wall135,275,575);
+        
+        Wall1 wall136 = new Wall1();
+        addObject(wall136,275,625);
+        
+        Wall1 wall137 = new Wall1();
+        addObject(wall137,325,625);
+        
+        Wall1 wall138 = new Wall1();
+        addObject(wall138,375,525);
+        
+        Wall1 wall139 = new Wall1();
+        addObject(wall139,425,525);
+        
+        Wall1 wall140 = new Wall1();
+        addObject(wall140,425,575);
+        
+        Wall1 wall141 = new Wall1();
+        addObject(wall141,425,625);
+        
+        Wall1 wall142 = new Wall1();
+        addObject(wall142,425,675);
+        
+        Wall1 wall143 = new Wall1();
+        addObject(wall143,425,725);
+        
+        Wall1 wall144 = new Wall1();
+        addObject(wall144,375,725);
+        
+        Wall1 wall145 = new Wall1();
+        addObject(wall145,475,625);
+        
+        Wall1 wall146 = new Wall1();
+        addObject(wall146,525,625);
+        
+        Wall1 wall147 = new Wall1();
+        addObject(wall147,575,625);
+        
+        Wall1 wall148 = new Wall1();
+        addObject(wall148,525,525);
+        
+        Wall1 wall149 = new Wall1();
+        addObject(wall149,575,525);
+        
+        Wall1 wall150 = new Wall1();
+        addObject(wall150,525,725);
+        
+        Wall1 wall151 = new Wall1();
+        addObject(wall151,525,775);
+        
+        Wall1 wall152 = new Wall1();
+        addObject(wall152,675,625);
+        
+        Wall1 wall153 = new Wall1();
+        addObject(wall153,675,675);
+        
+        Wall1 wall154 = new Wall1();
+        addObject(wall154,675,725);
+        
+        Wall1 wall155 = new Wall1();
+        addObject(wall155,625,725);
+        
+        Wall1 wall156 = new Wall1();
+        addObject(wall156,625,775);
+        
+        Wall1 wall157 = new Wall1();
+        addObject(wall157,725,725);
+        
+        Wall1 wall158 = new Wall1();
+        addObject(wall158,825,725);
+        
+        Wall1 wall159 = new Wall1();
+        addObject(wall159,825,775);
+        
+        Wall1 wall160 = new Wall1();
+        addObject(wall160,675,525);
+        
+        Wall1 wall161 = new Wall1();
+        addObject(wall161,725,525);
+        
+        Wall1 wall162 = new Wall1();
+        addObject(wall162,775,525);
+        
+        Wall1 wall163 = new Wall1();
+        addObject(wall163,775,575);
+        
+        Wall1 wall164 = new Wall1();
+        addObject(wall164,775,625);
+        
+        Wall1 wall165 = new Wall1();
+        addObject(wall165,825,625);
+        
+        Wall1 wall166 = new Wall1();
+        addObject(wall166,825,525);
+        
+        Wall1 wall167 = new Wall1();
+        addObject(wall167,875,525);
+        
+        Wall1 wall168 = new Wall1();
+        addObject(wall168,925,525);
+        
+        Wall1 wall169 = new Wall1();
+        addObject(wall169,975,525);
+        
+        Wall1 wall170 = new Wall1();
+        addObject(wall170,1075,525);
+        
+        Wall1 wall171 = new Wall1();
+        addObject(wall171,1125,525);
+        
+        Wall1 wall172 = new Wall1();
+        addObject(wall172,1125,575);
+        
+        Wall1 wall173 = new Wall1();
+        addObject(wall173,925,625);
+        
+        Wall1 wall174 = new Wall1();
+        addObject(wall174,925,675);
+        
+        Wall1 wall175 = new Wall1();
+        addObject(wall175,925,725);
+        
+        Wall1 wall176 = new Wall1();
+        addObject(wall176,975,675);
+        
+        Wall1 wall177 = new Wall1();
+        addObject(wall177,1025,625);
+        
+        Wall1 wall178 = new Wall1();
+        addObject(wall178,1025,675);
     }
     
     /**
