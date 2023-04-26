@@ -42,6 +42,7 @@ public class Player extends Actor
 
         //check if speed potion has been activated - if it has, player moves twice as fast
         int speed = 2;
+        
         if (activateSpeedPotion == true)
         {
             speed = 4;
@@ -98,16 +99,6 @@ public class Player extends Actor
         setLocation(getX()+dx, getY()+dy);
 
         if (isTouching(Wall1.class))
-        {
-            setLocation(getX()-dx, getY()-dy);
-        }
-
-        if (isTouching(Wall2.class))
-        {
-            setLocation(getX()-dx, getY()-dy);
-        }
-
-        if (isTouching(Wall3.class))
         {
             setLocation(getX()-dx, getY()-dy);
         }

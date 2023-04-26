@@ -1,24 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Wall here.
+ * A 50x50 pixel image of maze wall.
+ * This is used as one standard "building block" of the maze walls
+ * It's only still called wall1 so that around 180 lines don't have to be changed in MyWorld
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 26/04/2023
  */
 public class Wall1 extends Actor
 {
-    public Wall1()   //constructor to resize wall to be a better fit for the maze
-    {
-        GreenfootImage brick = getImage();
-        brick.scale(50, 50);
-    }
-    /**
-     * Act - do whatever the Wall wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    // wall does not need resizing as I made the image 50x50 pixels
+
     public void act()
     {
-        // Add your action code here.
     }
 }
