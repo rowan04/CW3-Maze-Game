@@ -28,7 +28,7 @@ public class End extends Actor
     {
         Actor Treasure;
         Treasure = getOneIntersectingObject(Treasure.class);
-        MyWorld.score += 1000;
+        MyWorld.score += 300;
         World world;
         world = getWorld();
         world.removeObject(Treasure);
