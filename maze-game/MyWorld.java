@@ -65,9 +65,8 @@ public class MyWorld extends World
             // add in items
             addItems();
             
-            // add in ghostly treasure
-            Treasure treasure = new Treasure();
-            addObject(treasure,50,50);
+            // add in treasure
+            addTreasure();
 
             // start the timer, setting it to 0
             timer = 0;
@@ -349,6 +348,30 @@ public class MyWorld extends World
         addObject(new SpeedPotion(), result3[0], result3[1]);
         addObject(new Teleport(), result4[0], result4[1]);
 
+    }
+    
+    /**
+     * adds in treasure
+     * it spawns randomly in one of three locations
+     * then can be moved around by the player
+     * with the goal of moving it to the end for 300 points
+     */
+    private void addTreasure()
+    {
+        Treasure treasure = new Treasure();
+        
+        // the wall breaker will spawn at one of the selected spawn points, at random
+        int treasure_spawn = (Greenfoot.getRandomNumber(2));
+
+        if (treasure_spawn == 0)
+        {
+            addObject(treasure, 475, 175);
+        }
+
+        if (treasure_spawn == 1)
+        {
+            addObject(treasure, 340, 575);
+        }
     }
     
     /**
