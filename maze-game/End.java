@@ -19,6 +19,20 @@ public class End extends Actor
     }
     public void act()
     {
-        // Add your action code here.
+        if (isTouching(Treasure.class))
+        {
+            score_treasure();
+        }
+    }
+    private void score_treasure()
+    {
+        Actor Treasure;
+        Treasure = getOneIntersectingObject(Treasure.class);
+        MyWorld.score += 1000;
+        World world;
+        world = getWorld();
+        world.removeObject(Treasure);
+        
+        MyWorld.trophy = true;
     }
 }
