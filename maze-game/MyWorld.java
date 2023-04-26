@@ -67,7 +67,7 @@ public class MyWorld extends World
             
             // add in ghostly treasure
             Treasure treasure = new Treasure();
-            addObject(treasure,75,75);
+            addObject(treasure,50,50);
 
             // start the timer, setting it to 0
             timer = 0;
@@ -111,8 +111,8 @@ public class MyWorld extends World
      */
     private void addPlayer()
     {
-        int x = 15;
-        int y = 30;
+        int x = 20;
+        int y = 20;
         addObject(new Player(), x, y);
     }
     

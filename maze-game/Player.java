@@ -18,6 +18,8 @@ public class Player extends Actor
     public static boolean useSpeedPotion = false;
     public static boolean activateSpeedPotion = false;
     public static int speedTimer = 300;
+    public static int dx;
+    public static int dy;
     
     /**
      * constructor to resize player to be a better fit for the maze
@@ -36,8 +38,8 @@ public class Player extends Actor
      */
     public void act()
     {
-        int dx = 0;
-        int dy = 0;
+        dx = 0;
+        dy = 0;
         String dir = "none";
 
         //check if speed potion has been activated - if it has, player moves twice as fast
