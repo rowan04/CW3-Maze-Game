@@ -103,10 +103,10 @@ public class Player extends Actor
             setLocation(getX()-dx, getY()-dy);
         }
         
-        if (isTouching(Moveable.class))
+        if (isTouching(Treasure.class))
         {
-            Actor moveable = getOneIntersectingObject(Moveable.class);
-            moveable.setLocation(moveable.getX()+dx, moveable.getY()+dy);
+            Actor treasure = getOneIntersectingObject(Treasure.class);
+            treasure.setLocation(treasure.getX()+dx, treasure.getY()+dy);
             setLocation(getX()-dx, getY()-dy);
         }
 
@@ -399,6 +399,14 @@ public class Player extends Actor
         world.showText("Quit game", 1075, 475);
         Quit quit = new Quit();
         world.addObject(quit,1075,525);
+        
+        world.showText(null, 725, 875);
+        
+        if (MyWorld.trophy == true)
+        {
+            Trophy award = new Trophy();
+            world.addObject(award,286,507);
+        }
     }
 
     /**
@@ -424,6 +432,8 @@ public class Player extends Actor
         world.showText("Play again", 875, 675);
         Again again = new Again();
         world.addObject(again,875,725);
+        
+        world.showText(null, 725, 875);
         
         world.showText("Quit game", 1075, 475);
         Quit quit = new Quit();

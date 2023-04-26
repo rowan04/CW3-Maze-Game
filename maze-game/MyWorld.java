@@ -15,6 +15,7 @@ public class MyWorld extends World
     public static int secondsTimer;
     public static int score;
     public static boolean startTimer;
+    public static boolean trophy = false;
     public GreenfootSound music = new GreenfootSound("music1.mp3");
     /**
      * Constructor for objects of class MyWorld.
@@ -40,7 +41,7 @@ public class MyWorld extends World
             score = 0;
             stop = false;
             removeObjects(getObjects(null));
-            setPaintOrder(Player.class);
+            setPaintOrder(Player.class, Ghost1.class, Ghost2.class, Ghost3.class, Ghost4.class);
             addPlayer();
             prepareMaze();
 
@@ -63,6 +64,10 @@ public class MyWorld extends World
 
             // add in items
             addItems();
+            
+            // add in ghostly treasure
+            Treasure treasure = new Treasure();
+            addObject(treasure,75,75);
 
             // start the timer, setting it to 0
             timer = 0;
@@ -71,7 +76,7 @@ public class MyWorld extends World
             // play music
             music.playLoop();
         }
-        showText("score: " + score, 725, 875);
+        
         
         // display timer if startTimer is true and stop is false
         if (startTimer == true)
@@ -80,6 +85,7 @@ public class MyWorld extends World
             {
                 timer ++;
                 showTimer(timer);
+                showText("score: " + score, 725, 875);
             }
         }
     }
