@@ -76,7 +76,7 @@ public class MyWorld extends World
             // play music
             music.playLoop();
         }
-        showText("score: " + score, 725, 875);
+        
         
         // display timer if startTimer is true and stop is false
         if (startTimer == true)
@@ -85,6 +85,7 @@ public class MyWorld extends World
             {
                 timer ++;
                 showTimer(timer);
+                showText("score: " + score, 725, 875);
             }
         }
     }
