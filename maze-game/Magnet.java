@@ -10,7 +10,7 @@ public class Magnet extends Actor
 {
     public Magnet()
     {
-        GreenfootImage beam = getImage();
+        GreenfootImage magnet = getImage();
         beam.scale(50, 50);
     }
     /**
