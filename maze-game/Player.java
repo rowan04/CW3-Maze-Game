@@ -313,7 +313,7 @@ public class Player extends Actor
     }
     
     /**
-     * if player is touching Zapper, collect it, then delete the Zapper object
+     * if player is touching magnet, collect it, then delete the magnet object
      */
     private void collectMagnet()
     {
