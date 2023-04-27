@@ -10,6 +10,8 @@ public class Player extends Actor
     public static boolean freeze = false;
     public static boolean hasTeleport = false;
     public static boolean hasZapper = false;
+    public static boolean hasMagnet = false;
+    public static boolean magState = false;
     private MyWorld myworld;
     // to clear confusion:
     // - hasSpeedPotion is true when the player picks up the speed potion
@@ -21,6 +23,8 @@ public class Player extends Actor
     public static int speedTimer = 300;
     public static int dx;
     public static int dy;
+    
+    private boolean mDown;
     
     /**
      * constructor to resize player to be a better fit for the maze
@@ -68,6 +72,15 @@ public class Player extends Actor
             dx = speed;
         }
 
+        if(mDown != Greenfoot.isKeyDown("m"))
+        {
+            if(hasMagnet == true)
+            {
+                toggleMagnet();
+            }
+            mDown = !mDown;
+        }
+        
         if(Greenfoot.isKeyDown("1") == true)
         {
             if(freeze == true)
@@ -204,7 +217,15 @@ public class Player extends Actor
         }
         
         /**
-         * if touching the teleporter, call the collectTeleporter function
+         * if touching the teleporter, call the collectMagnet function
+         */
+        if (isTouching(Magnet.class))
+        {
+            collectMagnet();
+        }
+        
+        /**
+         * if touching the magnet, call the collectTeleporter function
          */
         if (isTouching(Teleport.class))
         {
@@ -289,6 +310,24 @@ public class Player extends Actor
         world.addObject(busters,350,900);
         
         Greenfoot.playSound("ghost_busters.mp3");
+    }
+    
+    /**
+     * if player is touching Zapper, collect it, then delete the Zapper object
+     */
+    private void collectMagnet()
+    {
+        MyWorld.score += 10;
+        hasMagnet = true;
+        Actor Magnet;
+        Magnet = getOneIntersectingObject(Magnet.class);
+        World world;
+        world = getWorld();
+        world.removeObject(Magnet);
+        
+        Magnet mag = new Magnet();
+        world.addObject(mag,1025,875);
+        world.showText("Mag off", 1005, 920);
     }
 
     /**
@@ -412,6 +451,30 @@ public class Player extends Actor
         useSpeedPotion = false;
         activateSpeedPotion = false;
     }
+    
+    private void toggleMagnet()
+    {
+        if(magState == false)
+        {
+            if(MyWorld.score != 0)
+            {
+                MyWorld.score -= 1;
+                Treasure.timer = 0;
+                magState = true;
+                getWorld().showText("Mag on", 1005, 920);
+            }
+            else
+            {
+                magState = false;
+                getWorld().showText("Mag off", 1005, 920);
+            }
+        }
+        else if(magState == true)
+        {
+            magState = false;
+            getWorld().showText("Mag off", 1005, 920);
+        }
+    }
 
     /**
      * if player has a wallbreaker, break the breakable wall. Else, be moved away
@@ -441,6 +504,7 @@ public class Player extends Actor
         ((MyWorld)getWorld()).music.stop();
         Greenfoot.playSound("victory.mp3");
         MyWorld.startTimer = false;
+        hasMagnet = false;
         
         MyWorld.score += 400;
         
@@ -466,6 +530,8 @@ public class Player extends Actor
         world.showText("YOU WIN!!!", 575, 350);
         world.showText("Score:" + score, 575, 400);
         world.showText("Time:" + time, 575, 450);
+        
+        world.showText(null, 1005, 920);
         
         world.showText("Play again", 875, 675);
         Again again = new Again();
@@ -494,6 +560,7 @@ public class Player extends Actor
         ((MyWorld)getWorld()).music.stop();
         Greenfoot.playSound("death.mp3");
         MyWorld.startTimer = false;
+        hasMagnet = false;
         World world = getWorld();
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
@@ -511,6 +578,7 @@ public class Player extends Actor
         world.addObject(again,875,725);
         
         world.showText(null, 725, 875);
+        world.showText(null, 1005, 920);
         
         world.showText("Quit game", 1075, 475);
         Quit quit = new Quit();

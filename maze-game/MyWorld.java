@@ -51,11 +51,13 @@ public class MyWorld extends World
             Player.freeze = false;
             Player.hasTeleport = false;
             Player.hasZapper = false;
+            Player.hasMagnet = false;
             stop = false;
             Player.hasWallBreaker = false;
             Player.hasSpeedPotion = false;
             Player.useSpeedPotion = false;
             Player.activateSpeedPotion = false;
+            Player.magState = false;
             Player.speedTimer = 300;
 
             // add ghosts (after maze, so they show over the walls)
@@ -346,17 +348,25 @@ public class MyWorld extends World
         ex = null;
         ex_list.add(spawn_gun);
         
+        Collections.sort(ex_list);
+        ex = ex_list.toArray(new Integer[ex_list.size()]);
+        int spawn_mag = getRandomWithExclusion(rnd, 1, 12, ex);
+        ex = null;
+        ex_list.add(spawn_mag);
+        
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
         int[] result3 = decodeNumber(spawn_speed);
         int[] result4 = decodeNumber(spawn_tele);
         int[] result5 = decodeNumber(spawn_gun);
+        int[] result6 = decodeNumber(spawn_mag);
         
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);
         addObject(new SpeedPotion(), result3[0], result3[1]);
         addObject(new Teleport(), result4[0], result4[1]);
         addObject(new Zapper(), result5[0], result5[1]);
+        addObject(new Magnet(), result6[0], result6[1]);
 
     }
     
