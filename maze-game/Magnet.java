@@ -11,7 +11,7 @@ public class Magnet extends Actor
     public Magnet()
     {
         GreenfootImage magnet = getImage();
-        beam.scale(50, 50);
+        magnet.scale(50, 50);
     }
     /**
      * Act - do whatever the Magnet wants to do. This method is called whenever
