@@ -40,6 +40,7 @@ public class MyWorld extends World
         {
             score = 0;
             stop = false;
+            trophy = false;
             removeObjects(getObjects(null));
             setPaintOrder(Player.class, Ghost1.class, Ghost2.class, Ghost3.class, Ghost4.class);
             addPlayer();
