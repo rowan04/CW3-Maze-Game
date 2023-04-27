@@ -225,7 +225,7 @@ public class Player extends Actor
         }
         
         /**
-         * if touching the magnet, call the collectTeleporter function
+         * if touching the teleporter, call the collectTeleporter function
          */
         if (isTouching(Teleport.class))
         {
