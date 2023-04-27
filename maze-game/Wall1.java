@@ -13,5 +13,6 @@ public class Wall1 extends Actor
 
     public void act()
     {
+        
     }
 }

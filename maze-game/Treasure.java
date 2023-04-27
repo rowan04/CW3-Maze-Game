@@ -12,7 +12,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Treasure extends Actor
 {
     /**
-     * constructor to resize treasure to be slightly bigger than the maze wall to make moveing it not impossible
+     * constructor to resize treasure to be small so manovering around the maze isn't impossible
      */
     public Treasure()
     {
