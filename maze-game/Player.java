@@ -9,6 +9,7 @@ public class Player extends Actor
     public static boolean hasWallBreaker = false;
     public static boolean freeze = false;
     public static boolean hasTeleport = false;
+    public static boolean hasZapper = false;
     private MyWorld myworld;
     // to clear confusion:
     // - hasSpeedPotion is true when the player picks up the speed potion
@@ -90,6 +91,14 @@ public class Player extends Actor
             if(hasTeleport == true)
             {
                 teleport();
+            }
+        }
+        
+        if(Greenfoot.isKeyDown("4") == true)
+        {
+            if(hasZapper == true)
+            {
+                zap();
             }
         }
 
@@ -209,6 +218,14 @@ public class Player extends Actor
         {
             collectSpeedPotion();
         }
+        
+        /**
+         * if touching a ghost zapper, call the collectZapper function
+         */
+        if (isTouching(Zapper.class))
+        {
+            collectZapper();
+        }
 
         /**
          * if is touching a breakable wall, call touchingBreakable function
@@ -253,6 +270,25 @@ public class Player extends Actor
         
         Breaker_icon breaker = new Breaker_icon();
         world.addObject(breaker,1100,900);
+    }
+    
+    /**
+     * if player is touching Zapper, collect it, then delete the Zapper object
+     */
+    private void collectZapper()
+    {
+        MyWorld.score += 10;
+        hasZapper = true;
+        Actor Zapper;
+        Zapper = getOneIntersectingObject(Zapper.class);
+        World world;
+        world = getWorld();
+        world.removeObject(Zapper);
+        
+        Ghost_buster_icon busters = new Ghost_buster_icon();
+        world.addObject(busters,350,900);
+        
+        Greenfoot.playSound("ghost_busters.mp3");
     }
 
     /**
@@ -316,6 +352,45 @@ public class Player extends Actor
     }
 
     /**
+     * when 4 is pressed and they have the ghost zapper, it fires a beam to destroy the ghosts
+     */
+    private void zap()
+    {
+        if(Greenfoot.isKeyDown("up") == true)
+        {
+            hasZapper = false;
+            getWorld().removeObjects(getWorld().getObjects(Ghost_buster_icon.class));
+            Greenfoot.playSound("zap.mp3");
+            
+            getWorld().addObject(new Beam(-90), getX(), getY());
+        }
+        if(Greenfoot.isKeyDown("down") == true)
+        {
+            hasZapper = false;
+            getWorld().removeObjects(getWorld().getObjects(Ghost_buster_icon.class));
+            Greenfoot.playSound("zap.mp3");
+            
+            getWorld().addObject(new Beam(90), getX(), getY());
+        }
+        if(Greenfoot.isKeyDown("left") == true)
+        {
+            hasZapper = false;
+            getWorld().removeObjects(getWorld().getObjects(Ghost_buster_icon.class));
+            Greenfoot.playSound("zap.mp3");
+            
+            getWorld().addObject(new Beam(180), getX(), getY());
+        }
+        if(Greenfoot.isKeyDown("right") == true)
+        {
+            hasZapper = false;
+            getWorld().removeObjects(getWorld().getObjects(Ghost_buster_icon.class));
+            Greenfoot.playSound("zap.mp3");
+            
+            getWorld().addObject(new Beam(0), getX(), getY());
+        }
+    }
+    
+    /**
      * what happens when speedPotion is used
      */
     private void useSpeedPotion()
@@ -367,7 +442,7 @@ public class Player extends Actor
         Greenfoot.playSound("victory.mp3");
         MyWorld.startTimer = false;
         
-        MyWorld.score += 100;
+        MyWorld.score += 400;
         
         if (MyWorld.secondsTimer < 30)          //these are meant to stack
         {

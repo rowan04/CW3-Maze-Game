@@ -38,6 +38,13 @@ public class Ghost3 extends Actor
         {
             move();
         }
+        if (isTouching(Beam.class))
+        {
+            getWorld().addObject(new Treasure(), getX(), getY());
+            getWorld().removeObject(this);
+            Greenfoot.playSound("ghost_gone.mp3");
+            MyWorld.score += 200;
+        }
     }
     
     /**

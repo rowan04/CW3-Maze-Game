@@ -50,6 +50,7 @@ public class MyWorld extends World
             Player.hasWallBreaker = false;
             Player.freeze = false;
             Player.hasTeleport = false;
+            Player.hasZapper = false;
             stop = false;
             Player.hasWallBreaker = false;
             Player.hasSpeedPotion = false;
@@ -66,8 +67,6 @@ public class MyWorld extends World
             // add in items
             addItems();
             
-            // add in treasure
-            addTreasure();
 
             // start the timer, setting it to 0
             timer = 0;
@@ -338,41 +337,27 @@ public class MyWorld extends World
         Collections.sort(ex_list);
         ex = ex_list.toArray(new Integer[ex_list.size()]);
         int spawn_tele = getRandomWithExclusion(rnd, 1, 12, ex);
+        ex = null;
+        ex_list.add(spawn_tele);
+        
+        Collections.sort(ex_list);
+        ex = ex_list.toArray(new Integer[ex_list.size()]);
+        int spawn_gun = getRandomWithExclusion(rnd, 1, 12, ex);
+        ex = null;
+        ex_list.add(spawn_gun);
         
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
         int[] result3 = decodeNumber(spawn_speed);
         int[] result4 = decodeNumber(spawn_tele);
+        int[] result5 = decodeNumber(spawn_gun);
         
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);
         addObject(new SpeedPotion(), result3[0], result3[1]);
         addObject(new Teleport(), result4[0], result4[1]);
+        addObject(new Zapper(), result5[0], result5[1]);
 
-    }
-    
-    /**
-     * adds in treasure
-     * it spawns randomly in one of three locations
-     * then can be moved around by the player
-     * with the goal of moving it to the end for 300 points
-     */
-    private void addTreasure()
-    {
-        Treasure treasure = new Treasure();
-        
-        // the wall breaker will spawn at one of the selected spawn points, at random
-        int treasure_spawn = (Greenfoot.getRandomNumber(2));
-
-        if (treasure_spawn == 0)
-        {
-            addObject(treasure, 475, 175);
-        }
-
-        if (treasure_spawn == 1)
-        {
-            addObject(treasure, 340, 575);
-        }
     }
     
     /**
