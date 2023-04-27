@@ -11,6 +11,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Treasure extends Actor
 {
+    public static int timer = 0;
     /**
      * constructor to resize treasure to be small so manovering around the maze isn't impossible
      */
@@ -27,12 +28,41 @@ public class Treasure extends Actor
      */
     public void act()
     {
+        
         int dx = Player.dx;
         int dy = Player.dy;
         
         if (isTouching(Wall1.class))
         {
             setLocation(getX()-dx, getY()-dy);
+        }
+        
+        
+        if(Player.magState == true)
+        {
+            timer += 1;
+        
+            if(timer == 60)
+            {
+                MyWorld.score -= 1;
+                timer = 0;
+            }
+            
+            if(MyWorld.score != 0)
+            {
+                java.util.List actors = getWorld().getObjects(Player.class);
+                Player actor = (Player)actors.get(0);
+                turnTowards(actor.getX(), actor.getY());
+                if (! isTouching(Wall1.class))
+                {
+                    move(3);
+                }
+            }
+            else
+            {
+                Player.magState = false;
+                getWorld().showText("Mag off", 1005, 920);
+            }
         }
     }
 }
