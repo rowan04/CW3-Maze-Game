@@ -11,7 +11,8 @@ public class Breaker_icon extends Actor
     public Breaker_icon()   // constructor to resize breaker icon to be a better fit for the maze
     {
         GreenfootImage icon = getImage();
-        icon.scale(100, 100);
+        icon.scale(98, 98);
+        // scaled at 98 to fit on square better, so it doesn't touch edge/walls
     }
     /**
      * Act - do whatever the Breaker_icon wants to do. This method is called whenever
