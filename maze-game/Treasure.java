@@ -44,11 +44,11 @@ public class Treasure extends Actor
         
             if(timer == 60)
             {
-                MyWorld.score -= 1;
+                Player.score -= 1;
                 timer = 0;
             }
             
-            if(MyWorld.score != 0)
+            if(Player.score != 0)
             {
                 java.util.List actors = getWorld().getObjects(Player.class);
                 Player actor = (Player)actors.get(0);

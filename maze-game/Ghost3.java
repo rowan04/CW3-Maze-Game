@@ -43,7 +43,7 @@ public class Ghost3 extends Actor
             getWorld().addObject(new Treasure(), getX(), getY());
             getWorld().removeObject(this);
             Greenfoot.playSound("ghost_gone.mp3");
-            MyWorld.score += 200;
+            Player.score += 200;
         }
     }
     
