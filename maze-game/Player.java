@@ -257,12 +257,6 @@ public class Player extends Actor
         {
             touchingBreakable(hasWallBreaker, dx, dy);
         }
-        
-        //if touching the send to puzzel room 1 actor they are sent to that room
-        if (isTouching(Puzzel_world_1_tp.class))
-        {
-            //teleport to other world (save current world and when going back make sure player doesn't get caught in a teleport loop between the 2 worlds)
-        }
     }
 
     /**
