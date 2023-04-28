@@ -59,6 +59,12 @@ public class MyWorld extends World
             Player.activateSpeedPotion = false;
             Player.magState = false;
             Player.speedTimer = 300;
+            
+            showText(null, 575, 350);
+            showText(null, 575, 400);
+            showText(null, 575, 450);
+            showText(null, 875, 675);
+            showText(null, 1075, 475);
 
             // add ghosts (after maze, so they show over the walls)
             addGhost1();
