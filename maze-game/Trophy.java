@@ -8,6 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Trophy extends Actor
 {
+    public Trophy()
+    {
+        setImage("trophy_image.jpeg");
+    }
+
     /**
      * Act - do whatever the Trophy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

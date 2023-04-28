@@ -20,11 +20,16 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      */
     public MyWorld()
-    {    
+    {
         // Create a new world with 1150x950 cells with a cell size of 1x1 pixels.
         super(1150, 950, 1);
-        addObject(new Intro(),575,475);
         
+        GreenfootImage bg = new GreenfootImage("greyBackground.png");
+        bg.scale(getWidth(), getHeight());
+        setBackground(bg);
+
+        addObject(new Intro(),575,475);
+
         // ensure startTimer is set to false
         // as otherwise, stays as true when world resets
         startTimer = false;

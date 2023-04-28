@@ -33,6 +33,7 @@ public class Player extends Actor
      */
     public Player()
     {
+        setImage("man01.png");
         GreenfootImage person = getImage();
         int newHeight = (int)person.getHeight()/2;
         int newWidth = (int)person.getWidth()/2;
