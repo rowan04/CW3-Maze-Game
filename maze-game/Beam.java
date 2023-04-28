@@ -12,12 +12,14 @@ public class Beam extends Actor
     
     public Beam(int dir)
     {
+        setImage("beam.jpeg");
         GreenfootImage beam = getImage();
         beam.scale(15, 15);
         
         direction = dir;
         speed = 15;
     }
+
     /**
      * Act - do whatever the Beam wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

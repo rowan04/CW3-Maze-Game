@@ -10,6 +10,7 @@ public class WallBreaker extends Actor
 {
     public WallBreaker()
     {
+        setImage("wallBreaker.png");
         GreenfootImage wallBreaker = getImage();
         wallBreaker.scale(48, 48);
         // scaled at 48 so that it fits in square nicer (doesn't touch walls)

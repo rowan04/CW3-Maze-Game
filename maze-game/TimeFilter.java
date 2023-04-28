@@ -9,8 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TimeFilter extends Actor
 {
     private int timer;
+
     public TimeFilter()   //constructor to resize the time filter to fit the maze
     {
+        setImage("granite-light.jpg");
         GreenfootImage filter = getImage();
         filter.scale(1150, 950);
         filter.setTransparency(80);

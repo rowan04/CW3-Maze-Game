@@ -12,11 +12,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Treasure extends Actor
 {
     public static int timer = 0;
+    
     /**
      * constructor to resize treasure to be small so manovering around the maze isn't impossible
      */
     public Treasure()
     {
+        setImage("treasure_image.jpeg");
         GreenfootImage treasure = getImage();
         treasure.scale(15, 15);
     }

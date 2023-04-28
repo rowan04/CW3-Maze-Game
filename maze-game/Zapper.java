@@ -10,6 +10,7 @@ public class Zapper extends Actor
 {
     public Zapper()   //constructor to resize Teleport icon to be a better fit for the maze
     {
+        setImage("ghostZapper2000.jpeg");
         GreenfootImage zap = getImage();
         zap.scale(50, 50);
     }

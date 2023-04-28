@@ -23,6 +23,7 @@ public class Ghost3 extends Actor
      */
     public Ghost3()
     {
+        setImage("ghost1.png");
         GreenfootImage ghost = getImage();
         int newHeight = (int)ghost.getHeight()/5;
         int newWidth = (int)ghost.getWidth()/5;

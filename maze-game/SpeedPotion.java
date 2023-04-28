@@ -13,6 +13,7 @@ public class SpeedPotion extends Actor
      */
     public SpeedPotion()
     {
+        setImage("speed.png");
         GreenfootImage speedPotion = getImage();
         //int newHeight = (int)speedPotion.getHeight()/12;
         //int newWidth = (int)speedPotion.getWidth()/12;
