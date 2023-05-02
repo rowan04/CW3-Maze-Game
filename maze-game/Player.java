@@ -114,8 +114,14 @@ public class Player extends Actor
         {
             if(hasZapper == true)
             {
+                Armed armed = new Armed();
+                getWorld().addObject(armed,412,895);
                 zap();
             }
+        }
+        if(Greenfoot.isKeyDown("4") == false)
+        {
+            getWorld().removeObjects(getWorld().getObjects(Armed.class));
         }
 
         if (useSpeedPotion == true)
@@ -399,6 +405,7 @@ public class Player extends Actor
             Greenfoot.playSound("zap.mp3");
             
             getWorld().addObject(new Beam(-90), getX(), getY());
+            getWorld().removeObjects(getWorld().getObjects(Armed.class));
         }
         if(Greenfoot.isKeyDown("down") == true)
         {
@@ -407,6 +414,7 @@ public class Player extends Actor
             Greenfoot.playSound("zap.mp3");
             
             getWorld().addObject(new Beam(90), getX(), getY());
+            getWorld().removeObjects(getWorld().getObjects(Armed.class));
         }
         if(Greenfoot.isKeyDown("left") == true)
         {
@@ -415,6 +423,7 @@ public class Player extends Actor
             Greenfoot.playSound("zap.mp3");
             
             getWorld().addObject(new Beam(180), getX(), getY());
+            getWorld().removeObjects(getWorld().getObjects(Armed.class));
         }
         if(Greenfoot.isKeyDown("right") == true)
         {
@@ -423,6 +432,7 @@ public class Player extends Actor
             Greenfoot.playSound("zap.mp3");
             
             getWorld().addObject(new Beam(0), getX(), getY());
+            getWorld().removeObjects(getWorld().getObjects(Armed.class));
         }
     }
     
