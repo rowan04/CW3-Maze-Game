@@ -8,15 +8,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Teleport extends Actor
 {
+    public Teleport()   //constructor to resize Teleport icon to be a better fit for the maze
+    {
+        setImage("steel-ball.png");
+        GreenfootImage teleportBall = getImage();
+        teleportBall.scale(50, 50);
+    }
+
     /**
      * Act - do whatever the Teleport wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public Teleport()   //constructor to resize Teleport icon to be a better fit for the maze
-    {
-        GreenfootImage brick = getImage();
-        brick.scale(50, 50);
-    }
     public void act()
     {
         // Add your action code here.

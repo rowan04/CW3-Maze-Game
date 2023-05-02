@@ -10,9 +10,10 @@ public class SpeedPotion_option_1 extends Actor
      */
     public SpeedPotion_option_1()
     {
-        GreenfootImage inv_1 = getImage();
+        setImage("speed.png");
+        GreenfootImage speedPotionInv = getImage();
         // 95 scale fits better in inventory than 100 scale
-        inv_1.scale(95, 95);
+        speedPotionInv.scale(95, 95);
     }
 
     /**
