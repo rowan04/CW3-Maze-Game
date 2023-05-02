@@ -489,12 +489,12 @@ public class Player extends Actor
     private void touchingBreakable(boolean hasWallBreaker, int dx, int dy)
     {
         if (hasWallBreaker) {
-            Actor Breakable;
-            Breakable = getOneObjectAtOffset(0, 0, Breakable.class);
+            //Actor Breakable;
+            //Breakable = getOneObjectAtOffset(0, 0, Breakable.class);
+            Actor Breakable = getOneIntersectingObject(Breakable.class);
             World world;
             world = getWorld();
             world.removeObject(Breakable);
-            getWorld().removeObjects(getWorld().getObjects(Breaker_icon.class));
         }
         else
         {
