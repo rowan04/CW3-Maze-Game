@@ -12,7 +12,7 @@ public class Intro extends Actor
     {
         setImage("Intro.png");
         GreenfootImage intro = getImage();
-        intro.scale(1150, 467);
+        intro.scale(1150, 700);
     }
     
     /**
