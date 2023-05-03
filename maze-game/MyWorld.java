@@ -146,6 +146,10 @@ public class MyWorld extends World
         Ghost1 Ghost1 = new Ghost1();
         addObject(Ghost1, x, y);
         Ghost1.turn(Greenfoot.getRandomNumber(360));
+        
+        //creating ghost spawnpoint marker for player
+        Skull skull1 = new Skull();
+        addObject(skull1, x, y);
     }
     
     /**
@@ -167,6 +171,10 @@ public class MyWorld extends World
         Ghost2 Ghost2 = new Ghost2();
         addObject(Ghost2, x, y);
         Ghost2.turn(Greenfoot.getRandomNumber(360));
+        
+        //creating ghost spawnpoint marker for player
+        Skull skull2 = new Skull();
+        addObject(skull2, x, y);
     }
     
     /**
@@ -188,6 +196,10 @@ public class MyWorld extends World
         Ghost3 Ghost3 = new Ghost3();
         addObject(Ghost3, x, y);
         Ghost3.turn(Greenfoot.getRandomNumber(360));
+        
+        //creating ghost spawnpoint marker for player
+        Skull skull3 = new Skull();
+        addObject(skull3, x, y);
     }
     
     /**
@@ -209,6 +221,10 @@ public class MyWorld extends World
         Ghost4 Ghost4 = new Ghost4();
         addObject(Ghost4, x, y);
         Ghost4.turn(Greenfoot.getRandomNumber(360));
+        
+        //creating ghost spawnpoint marker for player
+        Skull skull4 = new Skull();
+        addObject(skull4, x, y);
     }
 
     /**
