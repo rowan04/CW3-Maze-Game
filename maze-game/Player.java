@@ -531,11 +531,13 @@ public class Player extends Actor
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
         world.removeObjects(actors);
-        String scoreString = " " + score;
+        String scoreString = " " + (score * (MyWorld.difficulty_multiplyer));
         String timeString = " " + MyWorld.secondsTimer + " Seconds.";
         world.showText("YOU WIN!!!", 575, 350);
         world.showText("Score:" + scoreString, 575, 400);
         world.showText("Time:" + timeString, 575, 450);
+        
+        world.showText("difficulty multiplyer: " + MyWorld.difficulty_multiplyer, 575, 900);
         
         world.showText(null, 1005, 920);
         
@@ -571,13 +573,15 @@ public class Player extends Actor
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
         world.removeObjects(actors);
-        String scoreString = " " + score;
+        String scoreString = " " + (score * (MyWorld.difficulty_multiplyer));
         String timeString = " " + MyWorld.secondsTimer + " Seconds.";
         world.showText("YOU DIED", 575, 350);
         world.showText("Score:" + scoreString, 575, 400);
         world.showText("Time:" + timeString, 575, 450);
         world.showText(null, 925, 875);
         world.showText(null, 825, 875);
+        
+        world.showText("difficulty multiplyer: " + MyWorld.difficulty_multiplyer, 575, 900);
         
         world.showText("Play again", 875, 675);
         Again again = new Again();

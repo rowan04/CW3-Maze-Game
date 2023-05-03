@@ -15,6 +15,8 @@ public class MyWorld extends World
     public static int secondsTimer;
     public static boolean startTimer;
     public static boolean trophy = false;
+    public static int difficulty_setting;
+    public static double difficulty_multiplyer;
     public GreenfootSound music = new GreenfootSound("music1.mp3");
     /**
      * Constructor for objects of class MyWorld.
@@ -40,52 +42,24 @@ public class MyWorld extends World
      */
     public void act()
     {
-        if (Greenfoot.getKey() == "enter")
+        if (Greenfoot.isKeyDown("9") || Greenfoot.isKeyDown("8") || Greenfoot.isKeyDown("7"))
         {
-            Player.score = 0;
-            stop = false;
-            trophy = false;
-            removeObjects(getObjects(null));
-            setPaintOrder(Player.class, Ghost1.class, Ghost2.class, Ghost3.class, Ghost4.class);
-            addPlayer();
-            prepareMaze();
-
-            // ensure time freeze, teleport, player having/using speed potion and player having the wallBreaker are set to false, this was an issue after resets
-            Player.hasWallBreaker = false;
-            Player.freeze = false;
-            Player.hasTeleport = false;
-            Player.hasZapper = false;
-            Player.hasMagnet = false;
-            stop = false;
-            Player.hasWallBreaker = false;
-            Player.hasSpeedPotion = false;
-            Player.useSpeedPotion = false;
-            Player.activateSpeedPotion = false;
-            Player.magState = false;
-            Player.speedTimer = 300;
-            
-            showText(null, 575, 350);
-            showText(null, 575, 400);
-            showText(null, 575, 450);
-            showText(null, 875, 675);
-            showText(null, 1075, 475);
-
-            // add ghosts (after maze, so they show over the walls)
-            addGhost1();
-            addGhost2();
-            addGhost3();
-            addGhost4();
-
-            // add in items
-            addItems();
-            
-
-            // start the timer, setting it to 0
-            timer = 0;
-            startTimer = true;
-
-            // play music
-            music.playLoop();
+            if (Greenfoot.isKeyDown("9"))
+            {
+                difficulty_setting = 3;
+                difficulty_multiplyer = 2;
+            }
+            if (Greenfoot.isKeyDown("8"))
+            {
+                difficulty_setting = 2;
+                difficulty_multiplyer = 1;
+            }
+            if (Greenfoot.isKeyDown("7"))
+            {
+                difficulty_setting = 1;
+                difficulty_multiplyer = 0.75;
+            }
+            createWorld();
         }
         
         
@@ -99,6 +73,57 @@ public class MyWorld extends World
                 showText("score: " + Player.score, 725, 875);
             }
         }
+    }
+    
+    private void createWorld()
+    {
+        Player.score = 0;
+        stop = false;
+        trophy = false;
+        removeObjects(getObjects(null));
+        setPaintOrder(Player.class, Ghost1.class, Ghost2.class, Ghost3.class, Ghost4.class);
+        addPlayer();
+        prepareMaze();
+
+        // ensure time freeze, teleport, player having/using speed potion and player having the wallBreaker are set to false, this was an issue after resets
+        Player.hasWallBreaker = false;
+        Player.freeze = false;
+        Player.hasTeleport = false;
+        Player.hasZapper = false;
+        Player.hasMagnet = false;
+        stop = false;
+        Player.hasWallBreaker = false;
+        Player.hasSpeedPotion = false;
+        Player.useSpeedPotion = false;
+        Player.activateSpeedPotion = false;
+        Player.magState = false;
+        Player.speedTimer = 300;
+        
+        showText(null, 575, 350);
+        showText(null, 575, 400);
+        showText(null, 575, 450);
+        showText(null, 875, 675);
+        showText(null, 1075, 475);
+
+        
+        showText("difficulty setting: " + difficulty_setting, 575, 900);
+        
+        // add ghosts (after maze, so they show over the walls)
+        addGhost1();
+        addGhost2();
+        addGhost3();
+        addGhost4();
+
+        // add in items
+        addItems();
+        
+
+        // start the timer, setting it to 0
+        timer = 0;
+        startTimer = true;
+
+        // play music
+        music.playLoop();
     }
 
     /**

@@ -53,7 +53,7 @@ public class Ghost1 extends Actor
      */
     public void move()
     {
-        move(2);
+        move(MyWorld.difficulty_setting);
         
         /**
          * allow the ghost to change direction randomly (3% chance)
