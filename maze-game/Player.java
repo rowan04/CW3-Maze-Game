@@ -6,6 +6,8 @@ import java.lang.*;  //allows checking signs on integers
  */
 public class Player extends Actor
 {
+    //sets up all public variables accessed by all classes to control items, score, speed and Player position
+    
     public static boolean hasWallBreaker = false;
     public static boolean freeze = false;
     public static boolean hasTeleport = false;
@@ -27,13 +29,14 @@ public class Player extends Actor
     public static int score;
     public static int speed = 2;
     
+    //private variable checking if the m key is being held
     private boolean mDown;
     
     
     /**
      * constructor to resize player to be a better fit for the maze
      */
-    public Player()
+    public Player() //sets image and size of this actor
     {
         setImage("man01.png");
         GreenfootImage person = getImage();
@@ -41,13 +44,14 @@ public class Player extends Actor
         int newWidth = (int)person.getWidth()/2;
         person.scale(newWidth, newHeight);
     }
-
+    
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
+        //sets up the movement variables
         dx = 0;
         dy = 0;
         String dir = "none";
@@ -59,6 +63,7 @@ public class Player extends Actor
             speed = 4;
         }
         // if speed potion active their speed is 4 if not its the default of 2
+        //when the player presses an arrow key then teh d value is set to a number
         if (Greenfoot.isKeyDown("up"))
         {
             dy = -speed;
@@ -75,7 +80,9 @@ public class Player extends Actor
         {
             dx = speed;
         }
-
+        
+        //if m is pressed and they have the magnet then call toggleMagnet method
+        //when m is pressed it uses the mDown variable to determin if m has been presses so it doesn't repetedly activate the magnet
         if(mDown != Greenfoot.isKeyDown("m"))
         {
             if(hasMagnet == true)
@@ -85,6 +92,7 @@ public class Player extends Actor
             mDown = !mDown;
         }
         
+        //if 1 is pressed and the have the time freeze item, timeFrozen method is called
         if(Greenfoot.isKeyDown("1") == true)
         {
             if(freeze == true)
@@ -93,6 +101,9 @@ public class Player extends Actor
             }
         }
 
+        //if 2 is pressed and the have the speed potion item, 2 ariables are changed
+        //one tells program there is no longer a speed potion in the inventory
+        //the other tells the program that the speed potion has been used
         if(Greenfoot.isKeyDown("2") == true)
         {
             if(hasSpeedPotion == true)
@@ -103,6 +114,7 @@ public class Player extends Actor
             }
         }
 
+        //if 3 is pressed and the have the teleport item, teleport method is called
         if(Greenfoot.isKeyDown("3") == true)
         {
             if(hasTeleport == true)
@@ -111,6 +123,8 @@ public class Player extends Actor
             }
         }
         
+        //if 4 is held and the have the ghost zapper item, an Armed actor appears in the set location to tell the user the gun is ready to fire
+        //and zap method is called
         if(Greenfoot.isKeyDown("4") == true)
         {
             if(hasZapper == true)
@@ -120,40 +134,48 @@ public class Player extends Actor
                 zap();
             }
         }
+        //if 4 isn't pressed, it removes all Armed actors
         if(Greenfoot.isKeyDown("4") == false)
         {
             getWorld().removeObjects(getWorld().getObjects(Armed.class));
         }
 
+        //if the variable is true it calls the method
         if (useSpeedPotion == true)
         {
             useSpeedPotion();
         }
 
+        //moves the Player
         setLocation(getX()+dx, getY()+dy);
 
+        //if the player is touching a wall they move backwards (opposit direction so they don't move at all)
         if (isTouching(Wall1.class))
         {
             setLocation(getX()-dx, getY()-dy);
         }
         
+        //if they are touching a Treasure actor then it moves that actor the same direction as the player
         if (isTouching(Treasure.class))
         {
-            Actor treasure = getOneIntersectingObject(Treasure.class);
-            treasure.setLocation(treasure.getX()+dx, treasure.getY()+dy);
-            setLocation(getX()-dx, getY()-dy);
+            Actor treasure = getOneIntersectingObject(Treasure.class);  //gets touching Treasure actor
+            treasure.setLocation(treasure.getX()+dx, treasure.getY()+dy);   //moves treasure
+            setLocation(getX()-dx, getY()-dy);  //moves player back so they don't clip throgh the treasure
         }
 
+        //if they made it to the end call the endGame method
         if (isTouching(End.class))
         {
             endGame();
         }
 
+        //if they touched the quit button then exits the game
         if (isTouching(Quit.class))
         {
             System.exit(0);
         }
 
+        //if they touched teh play again button then resets the maze
         if (isTouching(Again.class))
         {
             Greenfoot.setWorld(new MyWorld());
@@ -162,11 +184,11 @@ public class Player extends Actor
         /**
          * if touching any of the ghosts, player dies and loses
          */
-        if (isTouching(Ghost1.class))
+        if (isTouching(Ghost1.class) || isTouching(Ghost2.class) || isTouching(Ghost3.class) || isTouching(Ghost4.class))
         {
             if(hasTeleport == true)
             {
-                teleport();
+                teleport(); //if they have the teleport item, call teleport method instead of loosing
             }
             else
             {
@@ -174,41 +196,6 @@ public class Player extends Actor
             }
         }
 
-        if (isTouching(Ghost2.class))
-        {
-            if(hasTeleport == true)
-            {
-                teleport();
-            }
-            else
-            {
-                died();
-            }
-        }
-
-        if (isTouching(Ghost3.class))
-        {
-            if(hasTeleport == true)
-            {
-                teleport();
-            }
-            else
-            {
-                died();
-            }
-        }
-
-        if (isTouching(Ghost4.class))
-        {
-            if(hasTeleport == true)
-            {
-                teleport();
-            }
-            else
-            {
-                died();
-            }
-        }
 
         /**
          * if touching the wall breaker, call the collectWallBreaker function
@@ -272,16 +259,19 @@ public class Player extends Actor
      */
     private void timeFrozen()
     {
-        getWorld().removeObjects(getWorld().getObjects(Time_option_1.class));
-        Greenfoot.playSound("stop_time.mp3");
+        getWorld().removeObjects(getWorld().getObjects(Time_option_1.class));   //deletes icon from inventory
+        Greenfoot.playSound("stop_time.mp3");   //cool sound effect is played
         TimeFilter time = new TimeFilter();
-        getWorld().addObject(time,575,475);
+        getWorld().addObject(time,575,475); //creates cool filter that counts how long the time freeze is in effect
         
-        freeze = false;
+        freeze = false;     //makes it impossible to freeze time again
     }
 
     /**
      * if player is touching wallBreaker, collect it, then delete the wallBreaker object
+     * increases score by 10
+     * creates icon in inventory to show its been picked up
+     * changes variable so that code knows the Player has the item
      */
     private void collectWallBreaker()
     {
@@ -299,6 +289,9 @@ public class Player extends Actor
     
     /**
      * if player is touching Zapper, collect it, then delete the Zapper object
+     * increases score by 10
+     * creates icon in inventory to show its been picked up
+     * changes variable so that code knows the Player has the item
      */
     private void collectZapper()
     {
@@ -313,11 +306,15 @@ public class Player extends Actor
         Ghost_buster_icon busters = new Ghost_buster_icon();
         world.addObject(busters,350,900);
         
-        Greenfoot.playSound("ghost_busters.mp3");
+        Greenfoot.playSound("ghost_busters.mp3");   //plays cool sound effect
     }
     
     /**
      * if player is touching magnet, collect it, then delete the magnet object
+     * increases score by 10
+     * creates icon in inventory to show its been picked up
+     * changes variable so that code knows the Player has the item
+     * displays text telling the player if the magnet is on or not
      */
     private void collectMagnet()
     {
@@ -336,6 +333,10 @@ public class Player extends Actor
 
     /**
      * teleport functionality
+     * sets variable to false so can't teleport again
+     * deletes icon from inventory
+     * plays cool sound effect
+     * moves the Player
      */
     private void teleport()
     {
@@ -347,6 +348,9 @@ public class Player extends Actor
 
     /**
      * if player is touching teleport item, collect it, then delete the teleport item on the maze
+     * increases score by 10
+     * creates icon in inventory to show its been picked up
+     * changes variable so that code knows the Player has the item
      */
     private void collectTeleporter()
     {
@@ -363,6 +367,9 @@ public class Player extends Actor
 
     /**
      * if player is touching time freeze, collect it, then delete the time freeze object
+     * increases score by 10
+     * creates icon in inventory to show its been picked up
+     * changes variable so that code knows the Player has the item
      */
     private void collectTimePotion()
     {
@@ -379,6 +386,9 @@ public class Player extends Actor
 
     /**
      * if player is touching speed potion, collect it, then delete the speed potion object
+     * increases score by 10
+     * creates icon in inventory to show its been picked up
+     * changes variable so that code knows the Player has the item
      */
     private void collectSpeedPotion()
     {
@@ -396,49 +406,49 @@ public class Player extends Actor
 
     /**
      * when 4 is pressed and they have the ghost zapper, it fires a beam to destroy the ghosts
+     * they must first press one of teh arrow keys to choose a direction to fire or it won't work
+     * when it works, it sets variable to false so can't be fired again
+     * plays cool sound effect
+     * spawns Beam actor that moves in a direction according to the Beam class rules
+     * removes inventory icon
+     * removes Armed actor (so looks more smooth)
      */
     private void zap()
     {
+        int direction = 9001;
         if(Greenfoot.isKeyDown("up") == true)
         {
-            hasZapper = false;
-            getWorld().removeObjects(getWorld().getObjects(Ghost_buster_icon.class));
-            Greenfoot.playSound("zap.mp3");
-            
-            getWorld().addObject(new Beam(-90), getX(), getY());
-            getWorld().removeObjects(getWorld().getObjects(Armed.class));
+            direction = -90;
         }
-        if(Greenfoot.isKeyDown("down") == true)
+        else if(Greenfoot.isKeyDown("down") == true)
+        {
+            direction = 90;
+        }
+        else if(Greenfoot.isKeyDown("left") == true)
+        {
+            direction = 180;
+        }
+        else if(Greenfoot.isKeyDown("right") == true)
+        {
+            direction = 0;
+        }
+        if(direction != 9001)
         {
             hasZapper = false;
             getWorld().removeObjects(getWorld().getObjects(Ghost_buster_icon.class));
             Greenfoot.playSound("zap.mp3");
             
-            getWorld().addObject(new Beam(90), getX(), getY());
-            getWorld().removeObjects(getWorld().getObjects(Armed.class));
-        }
-        if(Greenfoot.isKeyDown("left") == true)
-        {
-            hasZapper = false;
-            getWorld().removeObjects(getWorld().getObjects(Ghost_buster_icon.class));
-            Greenfoot.playSound("zap.mp3");
-            
-            getWorld().addObject(new Beam(180), getX(), getY());
-            getWorld().removeObjects(getWorld().getObjects(Armed.class));
-        }
-        if(Greenfoot.isKeyDown("right") == true)
-        {
-            hasZapper = false;
-            getWorld().removeObjects(getWorld().getObjects(Ghost_buster_icon.class));
-            Greenfoot.playSound("zap.mp3");
-            
-            getWorld().addObject(new Beam(0), getX(), getY());
+            getWorld().addObject(new Beam(direction), getX(), getY());
             getWorld().removeObjects(getWorld().getObjects(Armed.class));
         }
     }
     
     /**
      * what happens when speedPotion is used
+     * removes inventory icon
+     * starts speed potion timer
+     * the speed remains increased while the timer isn't zero
+     * runs the resetSpeed method when timer runs out
      */
     private void useSpeedPotion()
     {
@@ -454,6 +464,7 @@ public class Player extends Actor
         }
     }
     
+    //sets all speed related variables to false and resets speed back to 2
     private void resetSpeed()
     {
         useSpeedPotion = false;
@@ -465,21 +476,24 @@ public class Player extends Actor
     {
         if(magState == false)
         {
+            //only activates if score is over 0 so they can't cheat the system
             if(score != 0)
             {
-                score -= 1;
-                Treasure.timer = 0;
-                magState = true;
-                getWorld().showText("Mag on", 1005, 920);
+                score -= 1;     //instantly decreases score by 1 so they can't spam the magnet and use it for free
+                Treasure.timer = 0; //sets the timer to zero to stop the time being the same every time the timer is pressed leading to 2 points being lost a second
+                magState = true;   //tells program the magnet is on
+                getWorld().showText("Mag on", 1005, 920);   //changes text to show this
             }
             else
             {
+                //if score is 0 then doesn't work and shows magnet is off
                 magState = false;
                 getWorld().showText("Mag off", 1005, 920);
             }
         }
         else if(magState == true)
         {
+            //resets magnet state when player is no longer holding m
             magState = false;
             getWorld().showText("Mag off", 1005, 920);
         }
@@ -491,8 +505,6 @@ public class Player extends Actor
     private void touchingBreakable(boolean hasWallBreaker, int dx, int dy)
     {
         if (hasWallBreaker) {
-            //Actor Breakable;
-            //Breakable = getOneObjectAtOffset(0, 0, Breakable.class);
             Actor Breakable = getOneIntersectingObject(Breakable.class);
             World world;
             world = getWorld();
@@ -505,7 +517,13 @@ public class Player extends Actor
     }
 
     /**
-     * player won - removes all actors except the player then displays information and gives player choice to play again or not
+     * player won - removes all actors and words except the player then displays information 
+     * and gives player choice to play again or quit
+     * resets variables
+     * plays sound effect
+     * calculates score dependent on time and difficulty
+     * incerases speed to easily press the buttons
+     * if the player got the treasure it displays the trophy as a reward for all their hard work
      */
     private void endGame()
     {
@@ -565,7 +583,14 @@ public class Player extends Actor
     }
 
     /**
-     * player died - removes all actors except the player then displays information and gives player choice to play again or not
+     * player died - removes all actors and words except the player then displays information 
+     * and gives player choice to play again or quit
+     * plays cool death sound effect
+     * resets variables
+     * calculates score dependent on time and difficulty
+     * incerases speed to easily press the buttons
+     * even if the player got the treasure they don't get the trophy because they died and didn't reach the end for some reason
+     * (they must have gone back for their hat enen though they were next to the exit)
      */
     private void died()
     {

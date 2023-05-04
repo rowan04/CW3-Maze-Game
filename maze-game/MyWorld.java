@@ -1,4 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+//all imports required to make random number generator work
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.Random;
  */
 public class MyWorld extends World
 {
+    //public and private variables defined when the world is made to manage things in the world
     public static boolean stop = false;
     private int timer;
     public static int secondsTimer;
@@ -17,13 +20,13 @@ public class MyWorld extends World
     public static boolean trophy = false;
     public static int difficulty_setting;
     public static double difficulty_multiplyer;
-    public GreenfootSound music = new GreenfootSound("music1.mp3");
+    public GreenfootSound music = new GreenfootSound("music1.mp3"); //background music deffinition
     /**
      * Constructor for objects of class MyWorld.
      */
     public MyWorld()
     {
-        // Create a new world with 1150x950 cells with a cell size of 1x1 pixels.
+        // Create a new world with 1150x950 cells with a cell size of 1x1 pixels with a gray background in a certain scale and shows intro page
         super(1150, 950, 1);
         
         GreenfootImage bg = new GreenfootImage("greyBackground.png");
@@ -42,6 +45,7 @@ public class MyWorld extends World
      */
     public void act()
     {
+        //if 7, 8 or 9 is pressed at any point then the difficulty setting and multiplier are set and createWorld method is ran
         if (Greenfoot.isKeyDown("9") || Greenfoot.isKeyDown("8") || Greenfoot.isKeyDown("7"))
         {
             if (Greenfoot.isKeyDown("9"))
@@ -63,7 +67,7 @@ public class MyWorld extends World
         }
         
         
-        // display timer if startTimer is true and stop is false
+        // display timer and score if startTimer is true and stop is false
         if (startTimer == true)
         {
             if (stop == false)
@@ -75,6 +79,14 @@ public class MyWorld extends World
         }
     }
     
+    /*
+     * resets all variables
+     * sets render order for actors so they appear infront of other actors so important ones are always visable
+     * runs methods that setup the maze
+     * removes all text that may be on the screen before the reset
+     * shows their difficulty choice
+     * starts the background music
+     */
     private void createWorld()
     {
         Player.score = 0;
@@ -128,23 +140,7 @@ public class MyWorld extends World
     }
 
     /**
-     * loops background music
-     */
-    private void playMusic()                //not in use
-    {
-        List<Integer> numbers = Arrays.asList(0, 1, 2, 3);
-        Collections.shuffle(numbers);
-        
-        List<String> songs = Arrays.asList("music1.mp3", "music2.mp3", "music3.mp3", "music4.mp3");
-        
-        Greenfoot.playSound(songs.get(numbers.get(0)));
-        Greenfoot.playSound(songs.get(numbers.get(1)));
-        Greenfoot.playSound(songs.get(numbers.get(2)));
-        Greenfoot.playSound(songs.get(numbers.get(3)));
-    }
-
-    /**
-     * adds the player
+     * adds the player at the start position
      */
     private void addPlayer()
     {
@@ -255,6 +251,8 @@ public class MyWorld extends World
 
     /**
      * adds coordinate decoding for random numbers
+     * it recieves a random number from the generator
+     * returns an array of 2 number coordinates (because java can't return 2 values at once for some reason)
      */
     private int[] decodeNumber(int spawn_point)
     {
@@ -331,7 +329,7 @@ public class MyWorld extends World
             result[1] = 475;
             return(result);
         }
-        return(result);
+        return(result); //here because it complained without it (but is never run because of the if statements)
     }
 
     /**
@@ -364,7 +362,8 @@ public class MyWorld extends World
 
     /**
      * the items will each spawn at one of the selected spawn points, at random
-     * they can't spawn at the same spawn point as another item
+     * they can't spawn at the same spawn point as another item (because of fancy number generator)
+     * the list is ordered for the sake of the number generator (which needs an ordered list of things to exclude)
      */
     private void addItems()
     {
@@ -406,6 +405,8 @@ public class MyWorld extends World
         ex = null;
         ex_list.add(spawn_mag);
         
+        
+        //decodes result and gets coordinates
         int[] result1 = decodeNumber(spawn_breaker);
         int[] result2 = decodeNumber(spawn_time);
         int[] result3 = decodeNumber(spawn_speed);
@@ -413,6 +414,7 @@ public class MyWorld extends World
         int[] result5 = decodeNumber(spawn_gun);
         int[] result6 = decodeNumber(spawn_mag);
         
+        //sets items at the decoded coordinates
         addObject(new WallBreaker(), result1[0], result1[1]);
         addObject(new TimePotion(), result2[0], result2[1]);
         addObject(new SpeedPotion(), result3[0], result3[1]);
