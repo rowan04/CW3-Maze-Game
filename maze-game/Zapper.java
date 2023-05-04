@@ -1,16 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Zapper here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * item to be picked up by player
+ * allows the player to shoot a beam to kill ghosts
+ * this reveals the treasure
  */
 public class Zapper extends Actor
 {
-    public Zapper()   //constructor to resize Teleport icon to be a better fit for the maze
+    public Zapper()   //constructor to resize Zapper icon to be the size of a block
     {
-        setImage("ghostZapper2000.jpeg");
+        setImage("ghostZapper2000.jpeg");   //sets the image of this actor
         GreenfootImage zap = getImage();
         zap.scale(50, 50);
     }

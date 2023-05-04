@@ -1,16 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * goes into inventory
+ * inventory icon that appears after picking up speed potion item from the maze
+ * gives a visual message that the player can now activate that item
+ * icon dissapears after its activated
  */
 public class SpeedPotion_option_1 extends Actor
 {
     /**
-     * constructor to resize player to be a better fit for the maze
+     * constructor to resize speed potion icon to be a better fit for the maze
      */
     public SpeedPotion_option_1()
     {
-        setImage("speed.png");
+        setImage("speed.png");   //sets the image of this actor
         GreenfootImage speedPotionInv = getImage();
         // 95 scale fits better in inventory than 100 scale
         speedPotionInv.scale(95, 95);

@@ -1,18 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Magnet here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * item to be picked up by player
+ * allows the player to drag the treasure towards them while holding the m key
+ * costs 1 point a second, if there isn't enough points then the magnet stops working
+ * is also used as the inventory icon because it worked out quite nice
  */
 public class Magnet extends Actor
 {
-    public Magnet()
+    public Magnet()    //constructor to set information on actor creation
     {
-        setImage("magnet.png");
+        setImage("magnet.png");   //sets the image of this actor
         GreenfootImage magnet = getImage();
-        magnet.scale(50, 50);
+        magnet.scale(50, 50);     //sets image size of this actor
     }
     /**
      * Act - do whatever the Magnet wants to do. This method is called whenever
