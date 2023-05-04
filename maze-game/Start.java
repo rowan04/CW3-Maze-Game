@@ -8,11 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Start extends Actor
 {
-    public Start()   //constructor to resize start pad to be a better fit for the maze
+    public Start()
     {
-        setImage("granite-light.jpg");
-        GreenfootImage start = getImage();
-        start.scale(100, 100);
+        // sets start image
+        // doesn't need resizing as image was made to scale
+        setImage("start.png");
     }
 
     /**
