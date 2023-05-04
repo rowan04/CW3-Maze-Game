@@ -25,8 +25,10 @@ public class Player extends Actor
     public static int dy;
     // making score a player attribute
     public static int score;
+    public static int speed = 2;
     
     private boolean mDown;
+    
     
     /**
      * constructor to resize player to be a better fit for the maze
@@ -51,7 +53,6 @@ public class Player extends Actor
         String dir = "none";
 
         //check if speed potion has been activated - if it has, player moves twice as fast
-        int speed = 2;
         
         if (activateSpeedPotion == true)
         {
@@ -457,6 +458,7 @@ public class Player extends Actor
     {
         useSpeedPotion = false;
         activateSpeedPotion = false;
+        speed = 2;
     }
     
     private void toggleMagnet()
@@ -527,6 +529,8 @@ public class Player extends Actor
             score += 10;
         }
         
+        speed = 6;
+        
         World world = getWorld();
         java.util.List<Actor> actors = world.getObjects(null);
         actors.removeAll(world.getObjects(Player.class));
@@ -580,6 +584,8 @@ public class Player extends Actor
         world.showText("Time:" + timeString, 575, 450);
         world.showText(null, 925, 875);
         world.showText(null, 825, 875);
+        
+        speed = 6;
         
         world.showText("difficulty multiplyer: " + MyWorld.difficulty_multiplyer, 575, 900);
         

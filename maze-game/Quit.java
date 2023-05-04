@@ -1,16 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Quit here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * creates an icon that the player can walk on to quit the game
  */
 public class Quit extends Actor
 {
-    public Quit()
+    public Quit()    //constructor to set information on actor creation
     {
-        setImage("button-red.png");
+        setImage("button-red.png");   //sets the image of this actor
     }
     
     /**

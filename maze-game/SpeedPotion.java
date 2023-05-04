@@ -1,23 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SpeedPotion here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * item to be picked up by player
+ * allows the player to use it to boost their speed for a limited duration
  */
 public class SpeedPotion extends Actor
 {
     /**
-     * constructor to resize player to be a better fit for the maze
+     * constructor to resize speed potion to be a better fit for the maze
      */
     public SpeedPotion()
     {
-        setImage("speed.png");
+        setImage("speed.png");   //sets the image of this actor
         GreenfootImage speedPotion = getImage();
-        //int newHeight = (int)speedPotion.getHeight()/12;
-        //int newWidth = (int)speedPotion.getWidth()/12;
-        //speedPotion.scale(newWidth, newHeight);
         speedPotion.scale(50, 50);
     }
     

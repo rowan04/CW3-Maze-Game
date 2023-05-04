@@ -1,18 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Skull here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * marks the spawnpoint of a ghost
+ * lets the player know that staying near it is probably a bad idea
  */
 public class Skull extends Actor
 {
-    public Skull()
+    public Skull()    //constructor to set information on actor creation
     {
-        setImage("Skull.png");
+        setImage("Skull.png");   //sets the image of this actor
         GreenfootImage skull = getImage();
-        skull.scale(30, 30);
+        skull.scale(30, 30);     //sets image size of this actor
     }
     /**
      * Act - do whatever the Skull wants to do. This method is called whenever

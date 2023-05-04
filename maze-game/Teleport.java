@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * item to be picked up by player
  * allows the player to use it at will to teleport to the start
- * or uses automatically when a ghost gets them instead oof loosing
+ * or uses automatically when a ghost gets them instead of loosing
  */
 public class Teleport extends Actor
 {

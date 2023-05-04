@@ -98,6 +98,7 @@ public class MyWorld extends World
         Player.activateSpeedPotion = false;
         Player.magState = false;
         Player.speedTimer = 300;
+        Player.speed = 2;
         
         showText(null, 575, 350);
         showText(null, 575, 400);

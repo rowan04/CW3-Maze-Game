@@ -21,7 +21,7 @@ public class Ghost3 extends Actor
     /**
      * constructor to resize player to be a better fit for the maze
      */
-    public Ghost3()
+    public Ghost3()   //constructor to resize the ghost to fit the maze and set the image
     {
         setImage("ghost1.png");
         GreenfootImage ghost = getImage();
@@ -35,16 +35,18 @@ public class Ghost3 extends Actor
      */
     public void act()
     {
+        //if the stop variable is not true (time freeze not in effect) then calls the move method to move the ghost
         if(MyWorld.stop == false)
         {
             move();
         }
+        //if the ghost is touching the beam from the ghost zapper then it spawns the treasure and dies adding score and playing a sound effect
         if (isTouching(Beam.class))
         {
-            getWorld().addObject(new Treasure(), getX(), getY());
-            getWorld().removeObject(this);
-            Greenfoot.playSound("ghost_gone.mp3");
-            Player.score += 200;
+            getWorld().addObject(new Treasure(), getX(), getY());   //spawns treasure
+            getWorld().removeObject(this);  //destroys "this" ghost
+            Greenfoot.playSound("ghost_gone.mp3");  //ghost death sound effect
+            Player.score += 200;    //increases score by 200
         }
     }
     
@@ -53,6 +55,7 @@ public class Ghost3 extends Actor
      */
     public void move()
     {
+        //moves the ghost dependent on the difficulty setting
         move(MyWorld.difficulty_setting);
         
         /**
