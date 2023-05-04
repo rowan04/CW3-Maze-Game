@@ -1,16 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Trophy here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * this actor is used just as an icon
+ * displays this icon if the player has brought the treasure to the end when the game ends
  */
 public class Trophy extends Actor
 {
-    public Trophy()
+    public Trophy()    //constructor to set information on actor creation
     {
-        setImage("trophy_image.jpeg");
+        setImage("trophy_image.jpeg");   //sets the image of this actor
     }
 
     /**

@@ -1,16 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TimePotion here.
+ * item to be picked up by player
+ * allows the player to freeze time
+ * (pauses ghost movement, pauses time, creates TimeFilter actor for fancy effect)
  * 
- * @author (your name) 
- * @version (a version number or a date)
  */
 public class TimePotion extends Actor
 {
     public TimePotion()   //constructor to resize time freeze to be a better fit for the maze
     {
-        setImage("time_freeze_icon.jpeg");
+        setImage("time_freeze_icon.jpeg");   //sets the image of this actor
         GreenfootImage size = getImage();
         size.scale(50, 50);
     }
