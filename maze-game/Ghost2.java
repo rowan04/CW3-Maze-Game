@@ -23,7 +23,7 @@ public class Ghost2 extends Actor
      */
     public Ghost2()   //constructor to resize the ghost to fit the maze and set the image
     {
-        setImage("ghost1.png");
+        setImage("ghost2.png");
         GreenfootImage ghost = getImage();
         int newHeight = (int)ghost.getHeight()/5;
         int newWidth = (int)ghost.getWidth()/5;
