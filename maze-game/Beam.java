@@ -11,22 +11,21 @@ public class Beam extends Actor
     {
         setImage("beam.png");   //sets the image of this actor
         GreenfootImage beam = getImage();
-        beam.scale(25, 25);   //sets the image of this actor
+        beam.scale(25, 25);
         
         direction = dir;    //player input
         speed = 15;     //speed defined here so can be easily changed if decided we don't want that speed
     }
 
     /**
-     * Act - do whatever the Beam wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * This method is called when program is ran.
      */
     public void act()
     {
         setRotation(direction); //rotates the beam based on the players input
         move(speed);    //the beam then moves along that line
         
-        //checks if hit an obstical
+        //checks if hit an obstacle
         if (isTouching(Wall1.class))
         {
             getWorld().removeObject(this);  //if touched a wall then the actor deletes itself

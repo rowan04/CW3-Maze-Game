@@ -7,7 +7,6 @@ import java.lang.*;  //allows checking signs on integers
 public class Player extends Actor
 {
     //sets up all public variables accessed by all classes to control items, score, speed and Player position
-    
     public static boolean hasWallBreaker = false;
     public static boolean freeze = false;
     public static boolean hasTeleport = false;
@@ -25,13 +24,11 @@ public class Player extends Actor
     public static int speedTimer = 300;
     public static int dx;
     public static int dy;
-    // making score a player attribute
     public static int score;
     public static int speed = 2;
     
     //private variable checking if the m key is being held
     private boolean mDown;
-    
     
     /**
      * constructor to resize player to be a better fit for the maze
@@ -46,8 +43,7 @@ public class Player extends Actor
     }
     
     /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * called when the program is run.
      */
     public void act()
     {
@@ -57,13 +53,13 @@ public class Player extends Actor
         String dir = "none";
 
         //check if speed potion has been activated - if it has, player moves twice as fast
-        
         if (activateSpeedPotion == true)
         {
             speed = 4;
         }
+
         // if speed potion active their speed is 4 if not its the default of 2
-        //when the player presses an arrow key then teh d value is set to a number
+        // when the player presses an arrow key the d value is set to a number
         if (Greenfoot.isKeyDown("up"))
         {
             dy = -speed;
@@ -82,7 +78,7 @@ public class Player extends Actor
         }
         
         //if m is pressed and they have the magnet then call toggleMagnet method
-        //when m is pressed it uses the mDown variable to determin if m has been presses so it doesn't repetedly activate the magnet
+        //when m is pressed it uses the mDown variable to determine if m has been pressed so it doesn't repeatedly activate the magnet
         if(mDown != Greenfoot.isKeyDown("m"))
         {
             if(hasMagnet == true)
@@ -101,8 +97,8 @@ public class Player extends Actor
             }
         }
 
-        //if 2 is pressed and the have the speed potion item, 2 ariables are changed
-        //one tells program there is no longer a speed potion in the inventory
+        //if 2 is pressed and the player has the speed potion item, 2 variables are changed
+        //one tells the program there is no longer a speed potion in the inventory
         //the other tells the program that the speed potion has been used
         if(Greenfoot.isKeyDown("2") == true)
         {
@@ -134,6 +130,7 @@ public class Player extends Actor
                 zap();
             }
         }
+        
         //if 4 isn't pressed, it removes all Armed actors
         if(Greenfoot.isKeyDown("4") == false)
         {
@@ -149,7 +146,7 @@ public class Player extends Actor
         //moves the Player
         setLocation(getX()+dx, getY()+dy);
 
-        //if the player is touching a wall they move backwards (opposit direction so they don't move at all)
+        //if the player is touching a wall they move in the opposite direction so they don't move at all
         if (isTouching(Wall1.class))
         {
             setLocation(getX()-dx, getY()-dy);
@@ -169,13 +166,13 @@ public class Player extends Actor
             endGame();
         }
 
-        //if they touched the quit button then exits the game
+        //if they touched the quit button, then exit the game
         if (isTouching(Quit.class))
         {
             System.exit(0);
         }
 
-        //if they touched teh play again button then resets the maze
+        //if they touched the play again button, then reset the maze
         if (isTouching(Again.class))
         {
             Greenfoot.setWorld(new MyWorld());
@@ -260,9 +257,9 @@ public class Player extends Actor
     private void timeFrozen()
     {
         getWorld().removeObjects(getWorld().getObjects(Time_option_1.class));   //deletes icon from inventory
-        Greenfoot.playSound("stop_time.mp3");   //cool sound effect is played
+        Greenfoot.playSound("stop_time.mp3");   //sound effect is played
         TimeFilter time = new TimeFilter();
-        getWorld().addObject(time,575,475); //creates cool filter that counts how long the time freeze is in effect
+        getWorld().addObject(time,575,475); //creates filter that counts how long the time freeze is in effect
         
         freeze = false;     //makes it impossible to freeze time again
     }
@@ -306,7 +303,7 @@ public class Player extends Actor
         Ghost_buster_icon busters = new Ghost_buster_icon();
         world.addObject(busters,350,900);
         
-        Greenfoot.playSound("ghost_busters.mp3");   //plays cool sound effect
+        Greenfoot.playSound("ghost_busters.mp3");   //plays sound effect
     }
     
     /**
@@ -335,7 +332,7 @@ public class Player extends Actor
      * teleport functionality
      * sets variable to false so can't teleport again
      * deletes icon from inventory
-     * plays cool sound effect
+     * plays sound effect
      * moves the Player
      */
     private void teleport()
@@ -406,7 +403,7 @@ public class Player extends Actor
 
     /**
      * when 4 is pressed and they have the ghost zapper, it fires a beam to destroy the ghosts
-     * they must first press one of teh arrow keys to choose a direction to fire or it won't work
+     * they must first press one of the arrow keys to choose a direction to fire or it won't work
      * when it works, it sets variable to false so can't be fired again
      * plays cool sound effect
      * spawns Beam actor that moves in a direction according to the Beam class rules
@@ -464,7 +461,9 @@ public class Player extends Actor
         }
     }
     
-    //sets all speed related variables to false and resets speed back to 2
+    /**
+     * sets all speed related variables to false and resets speed back to 2
+     */
     private void resetSpeed()
     {
         useSpeedPotion = false;
@@ -472,6 +471,9 @@ public class Player extends Actor
         speed = 2;
     }
     
+    /**
+     * allows player to use the magnet
+     */
     private void toggleMagnet()
     {
         if(magState == false)
@@ -532,19 +534,25 @@ public class Player extends Actor
         MyWorld.startTimer = false;
         hasMagnet = false;
         
+        //addings score for winning, and under a certain time
+        //these scores are meant to stack
         score += 400;
-        
-        if (MyWorld.secondsTimer < 30)          //these are meant to stack
+        if (MyWorld.secondsTimer < 20)
         {
-            score += 50;
+            // this is very hard! so a lot of score added
+            score += 200;
+        }
+        if (MyWorld.secondsTimer < 30)
+        {
+            score += 100;
         }
         if (MyWorld.secondsTimer < 60)
         {
-            score += 25;
+            score += 50;
         }
         if (MyWorld.secondsTimer < 120)
         {
-            score += 10;
+            score += 25;
         }
         
         speed = 6;
@@ -588,9 +596,9 @@ public class Player extends Actor
      * plays cool death sound effect
      * resets variables
      * calculates score dependent on time and difficulty
-     * incerases speed to easily press the buttons
+     * increases speed to easily press the buttons
      * even if the player got the treasure they don't get the trophy because they died and didn't reach the end for some reason
-     * (they must have gone back for their hat enen though they were next to the exit)
+     * (they must have gone back for their hat even though they were next to the exit)
      */
     private void died()
     {

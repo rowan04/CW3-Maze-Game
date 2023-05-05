@@ -14,12 +14,4 @@ public class Breaker_icon extends Actor
         icon.scale(98, 98);
         // scaled at 98 to fit on square better, so it doesn't touch edge/walls
     }
-    /**
-     * Act - do whatever the Breaker_icon wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }

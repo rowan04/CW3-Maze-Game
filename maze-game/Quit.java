@@ -9,13 +9,4 @@ public class Quit extends Actor
     {
         setImage("button-red.png");   //sets the image of this actor
     }
-    
-    /**
-     * Act - do whatever the Quit wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }

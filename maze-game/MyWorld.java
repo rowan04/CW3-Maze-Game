@@ -79,7 +79,7 @@ public class MyWorld extends World
         }
     }
     
-    /*
+    /**
      * resets all variables
      * sets render order for actors so they appear infront of other actors so important ones are always visable
      * runs methods that setup the maze
@@ -118,7 +118,7 @@ public class MyWorld extends World
         showText(null, 875, 675);
         showText(null, 1075, 475);
 
-        
+        // add text to show difficulty setting
         showText("difficulty setting: " + difficulty_setting, 575, 900);
         
         // add ghosts (after maze, so they show over the walls)
@@ -130,7 +130,6 @@ public class MyWorld extends World
         // add in items
         addItems();
         
-
         // start the timer, setting it to 0
         timer = 0;
         startTimer = true;
@@ -430,10 +429,6 @@ public class MyWorld extends World
      */
     private void prepareMaze()
     {
-        //discance from 2 midpoint = 50
-        //distance from wall = 25
-        //23 blocks wide
-        //16 blocks high
         create_start();
         create_end();
         create_walls();

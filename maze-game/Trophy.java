@@ -12,13 +12,4 @@ public class Trophy extends Actor
         GreenfootImage trophy = getImage();
         trophy.scale(300, 300);
     }
-
-    /**
-     * Act - do whatever the Trophy wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }
