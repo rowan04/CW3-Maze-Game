@@ -13,7 +13,7 @@ public class SpeedPotion extends Actor
     {
         setImage("speed.png");   //sets the image of this actor
         GreenfootImage speedPotion = getImage();
-        speedPotion.scale(50, 50);
+        speedPotion.scale(48, 48);
     }
     
     /**
