@@ -9,7 +9,7 @@ public class Teleport extends Actor
 {
     public Teleport()   //constructor to resize Teleport icon to be a better fit for the maze
     {
-        setImage("steel-ball.png");   //sets the image of this actor
+        setImage("teleporter.png");   //sets the image of this actor
         GreenfootImage teleportBall = getImage();
         teleportBall.scale(50, 50);
     }

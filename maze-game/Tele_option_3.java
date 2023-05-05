@@ -9,7 +9,7 @@ public class Tele_option_3 extends Actor
 {
     public Tele_option_3()   //constructor to resize teleporter inventory icon to fit in the inventory
     {
-        setImage("steel-ball.png");   //sets the image of this actor
+        setImage("teleporter.png");   //sets the image of this actor
         GreenfootImage inv_1 = getImage();
         inv_1.scale(100, 100);
     }
