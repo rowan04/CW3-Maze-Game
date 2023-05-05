@@ -10,9 +10,9 @@ public class TimePotion extends Actor
 {
     public TimePotion()   //constructor to resize time freeze to be a better fit for the maze
     {
-        setImage("time_freeze_icon.jpeg");   //sets the image of this actor
+        setImage("timeFreeze.png");   //sets the image of this actor
         GreenfootImage size = getImage();
-        size.scale(50, 50);
+        size.scale(48, 48);
     }
 
     /**
