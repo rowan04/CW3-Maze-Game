@@ -9,7 +9,7 @@ public class Ghost_buster_icon extends Actor
 {
     public Ghost_buster_icon()   //constructor to resize ghost_buster_icon to be a better fit for the inventory
     {
-        setImage("ghostBusters.png");   //sets the image of this actor
+        setImage("zapper.png");   //sets the image of this actor
         GreenfootImage zap = getImage();
         zap.scale(100, 100);   //sets the image size of this actor
     }
