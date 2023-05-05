@@ -10,7 +10,7 @@ public class Armed extends Actor
     //sets image and size on creation
     public Armed()
     {
-        //setImage("Armed_image.jpeg"); //sets image but doesn't work because it crashes with this 1 line
+        setImage("armed.png");
         GreenfootImage armed = getImage();
         armed.scale(25, 25);    //sets image size
     }
