@@ -9,9 +9,9 @@ public class Zapper extends Actor
 {
     public Zapper()   //constructor to resize Zapper icon to be the size of a block
     {
-        setImage("ghostZapper2000.jpeg");   //sets the image of this actor
+        setImage("zapper.png");   //sets the image of this actor
         GreenfootImage zap = getImage();
-        zap.scale(50, 50);
+        zap.scale(48, 48);
     }
     /**
      * Act - do whatever the Zapper wants to do. This method is called whenever
