@@ -12,7 +12,7 @@ public class Magnet extends Actor
     {
         setImage("magnet.png");   //sets the image of this actor
         GreenfootImage magnet = getImage();
-        magnet.scale(50, 50);     //sets image size of this actor
+        magnet.scale(48, 48);     //sets image size of this actor
     }
     /**
      * Act - do whatever the Magnet wants to do. This method is called whenever
