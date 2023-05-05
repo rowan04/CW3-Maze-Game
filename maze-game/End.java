@@ -14,19 +14,21 @@ public class End extends Actor
     }
     
     /**
-     * Act - do whatever the End wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Called when program is run
+     * constantly checks if the treasure is touching it
+     * if it is it calls score_treasure method
      */
     public void act()
     {
-        //constantly checks if the treasure is touching it, if it is it calls score_treasure method
         if (isTouching(Treasure.class))
         {
             score_treasure();
         }
     }
     
-    //if called from act method then deletes the treasure that is touching it, increases the score and enables the fancy trophy at the end
+    /**
+     * if called from act method then deletes the treasure that is touching it, increases the score and enables the fancy trophy at the end
+     */
     private void score_treasure()
     {
         Actor Treasure;
@@ -36,6 +38,7 @@ public class End extends Actor
         world = getWorld();
         world.removeObject(Treasure);   //deletes Treasure actor
         
-        MyWorld.trophy = true;  //enables skeliton trophy at the end
+        //enables trophy at the end
+        MyWorld.trophy = true;
     }
 }

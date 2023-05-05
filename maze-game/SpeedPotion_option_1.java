@@ -17,13 +17,4 @@ public class SpeedPotion_option_1 extends Actor
         // 95 scale fits better in inventory than 100 scale
         speedPotionInv.scale(95, 95);
     }
-
-    /**
-     * Act - do whatever the SpeedPotion_option_1 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        
-    }
 }

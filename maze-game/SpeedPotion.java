@@ -15,13 +15,4 @@ public class SpeedPotion extends Actor
         GreenfootImage speedPotion = getImage();
         speedPotion.scale(48, 48);
     }
-    
-    /**
-     * Act - do whatever the SpeedPotion wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }

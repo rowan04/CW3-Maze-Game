@@ -7,19 +7,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Armed extends Actor
 {
-    //sets image and size on creation
+    /**
+     * sets image and size on creation
+     */
     public Armed()
     {
         setImage("armed.png");
         GreenfootImage armed = getImage();
         armed.scale(25, 25);    //sets image size
-    }
-    /**
-     * Act - do whatever the Armed wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
     }
 }

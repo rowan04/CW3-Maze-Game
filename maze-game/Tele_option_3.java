@@ -13,13 +13,4 @@ public class Tele_option_3 extends Actor
         GreenfootImage inv_1 = getImage();
         inv_1.scale(100, 100);
     }
-
-    /**
-     * Act - do whatever the Tele_option_3 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }

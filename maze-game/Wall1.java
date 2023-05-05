@@ -9,14 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Wall1 extends Actor
 {
-    public Wall1()    //constructor to set information on actor creation
+    public Wall1()
     {
         setImage("newWall.png");   //sets the image of this actor
-    }
-
-    // wall does not need resizing it was made 50x50 pixels (the size of 1 block)
-
-    public void act()
-    { 
+        // wall does not need resizing it was made 50x50 pixels (the size of 1 block)
     }
 }

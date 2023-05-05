@@ -13,13 +13,4 @@ public class Teleport extends Actor
         GreenfootImage teleportBall = getImage();
         teleportBall.scale(50, 50);
     }
-
-    /**
-     * Act - do whatever the Teleport wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }

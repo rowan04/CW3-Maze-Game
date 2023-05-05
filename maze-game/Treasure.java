@@ -5,7 +5,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The player can move it around the maze
  * It can't go through walls
  * If the player gets it to the end, they get extra points
- * 
  */
 public class Treasure extends Actor
 {

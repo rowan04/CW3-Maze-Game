@@ -5,7 +5,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * the actor covers the screen to create a cool look
  * this actor then counts how long the time stop effects will last then it resets the stop variable
  * it the removes itself to show the effect has ended
- * 
  */
 public class TimeFilter extends Actor
 {
@@ -20,8 +19,7 @@ public class TimeFilter extends Actor
     }
 
     /**
-     * Act - do whatever the TimeFilter wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * called when program is ran
      */
     public void act()
     {

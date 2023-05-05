@@ -13,12 +13,4 @@ public class WallBreaker extends Actor
         wallBreaker.scale(48, 48);
         // scaled at 48 so that it fits in square nicer (doesn't touch walls)
     }
-    /**
-     * Act - do whatever the WallBreaker wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }

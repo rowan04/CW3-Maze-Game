@@ -9,12 +9,4 @@ public class Again extends Actor
     {
         setImage("button-green.png");   //sets the image of this actor
     }
-    /**
-     * Act - do whatever the Again wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }

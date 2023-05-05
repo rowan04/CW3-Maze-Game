@@ -11,7 +11,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Ghost2 extends Actor
 {
     /**
-     * these values keep each ghost within their set area
+     * these values keep the ghost within their set area
      */
     public static int lower_x;
     public static int upper_x;

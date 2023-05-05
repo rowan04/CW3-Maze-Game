@@ -11,13 +11,4 @@ public class Intro extends Actor
         GreenfootImage intro = getImage();
         intro.scale(1150, 700);     //sets image size of this actor
     }
-    
-    /**
-     * Act - do whatever the Intro wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-    }
 }
