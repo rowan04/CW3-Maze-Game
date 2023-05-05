@@ -16,7 +16,7 @@ public class Treasure extends Actor
      */
     public Treasure()   //sets size and image on actor creation
     {
-        setImage("treasure_image.jpeg");
+        setImage("treasure.png");
         GreenfootImage treasure = getImage();
         treasure.scale(15, 15);
     }
