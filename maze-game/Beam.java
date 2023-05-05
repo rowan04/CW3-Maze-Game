@@ -9,9 +9,9 @@ public class Beam extends Actor
     
     public Beam(int dir)    //on creation sets the information for this actor using the direction it was given by a player input
     {
-        setImage("beam.jpeg");   //sets the image of this actor
+        setImage("beam.png");   //sets the image of this actor
         GreenfootImage beam = getImage();
-        beam.scale(15, 15);   //sets the image of this actor
+        beam.scale(25, 25);   //sets the image of this actor
         
         direction = dir;    //player input
         speed = 15;     //speed defined here so can be easily changed if decided we don't want that speed
