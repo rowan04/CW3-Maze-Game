@@ -10,7 +10,7 @@ public class Time_option_1 extends Actor
 {
     public Time_option_1()   //constructor to resize time stop inventory icon to fit in the inventory
     {
-        setImage("1_time_freeze_icon.jpeg");   //sets the image of this actor
+        setImage("timeFreeze.png");   //sets the image of this actor
         GreenfootImage inv_1 = getImage();
         inv_1.scale(100, 100);
     }
