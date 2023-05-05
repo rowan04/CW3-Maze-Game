@@ -38,10 +38,10 @@ public class Player extends Actor
      */
     public Player() //sets image and size of this actor
     {
-        setImage("man01.png");
+        setImage("player.png");
         GreenfootImage person = getImage();
-        int newHeight = (int)person.getHeight()/2;
-        int newWidth = (int)person.getWidth()/2;
+        int newHeight = (int)person.getHeight()/16;
+        int newWidth = (int)person.getWidth()/16;
         person.scale(newWidth, newHeight);
     }
     
