@@ -8,7 +8,9 @@ public class Trophy extends Actor
 {
     public Trophy()    //constructor to set information on actor creation
     {
-        setImage("trophy_image.jpeg");   //sets the image of this actor
+        setImage("trophy.png");   //sets the image of this actor
+        GreenfootImage trophy = getImage();
+        trophy.scale(300, 300);
     }
 
     /**
